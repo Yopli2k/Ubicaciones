@@ -19,6 +19,7 @@
 
 namespace FacturaScripts\Plugins\Ubicaciones\Model;
 
+use FacturaScripts\Core\Base\DataBase\DataBaseWhere;
 use FacturaScripts\Core\Model\Base\ModelClass;
 use FacturaScripts\Core\Model\Base\ModelTrait;
 use FacturaScripts\Dinamic\Model\Variante;
@@ -98,17 +99,35 @@ class VariantLocation extends ModelClass
         return 'variants_locations';
     }    
     
+    /**
+     * Set a id of variant from product and variant reference
+     * 
+     * @param string $product
+     * @param string $reference
+     */
+    public function setIdVariantFromReference($product, $reference)
+    {
+        $where = [ 
+            new DataBaseWhere('idproducto', $product),
+            new DataBaseWhere('referencia', $reference) 
+        ];
+        
+        $variant = new Variante();
+        $variant->loadFromCode('', $where);
+        $this->idvariant = $variant->idvariante;        
+    }    
     
     /**
-     * Returns true if there are no errors in the values of the model properties.
-     * It runs inside the save method.
+     * Returns the url where to see / modify the data.
      *
-     * @return bool
+     * @param string $type
+     * @param string $list
+     *
+     * @return string
      */
-    public function test()
+    public function url(string $type = 'auto', string $list = 'List')
     {
-        
-        
-        return parent::test();
-    }
+        $list = 'EditProducto?code=' . $this->idproduct . '&active=List';
+        return parent::url($type, $list);
+    }    
 }

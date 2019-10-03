@@ -50,7 +50,7 @@ class Location extends ModelClass
      * 
      * @var string
      */
-    public $bin;
+    public $drawer;
 
     /**
      * Link to the Warehouse model
@@ -176,7 +176,7 @@ class Location extends ModelClass
         $this->addToDescription($description, $this->aisle, $i18n->trans('aisle'));
         $this->addToDescription($description, $this->rack, $i18n->trans('rack'));
         $this->addToDescription($description, $this->shelf, $i18n->trans('shelf'));
-        $this->addToDescription($description, $this->bin, $i18n->trans('bin'));
+        $this->addToDescription($description, $this->drawer, $i18n->trans('drawer'));
         return $description;
     }
     
@@ -223,7 +223,7 @@ class Location extends ModelClass
         return !(empty($this->aisle) 
             && empty($this->rack) 
             && empty($this->shelf) 
-            && empty($this->bin)
+            && empty($this->drawer)
         );
     }
 }

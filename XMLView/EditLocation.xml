@@ -47,8 +47,8 @@
             <column name="shelf" numcolumns="2" order="140">
                 <widget type="text" fieldname="shelf" />
             </column>
-            <column name="bin" numcolumns="2" order="140">
-                <widget type="text" fieldname="bin" />
+            <column name="drawer" numcolumns="2" order="140">
+                <widget type="text" fieldname="drawer" />
             </column>
         </group>
     </columns>

@@ -23,8 +23,14 @@
 <view>
     <columns>
         <group name="product" title="product" numcolumns="12" icon="fas fa-cube">
-            <column name="code" display="none" numcolumns="2" order="100">
+            <column name="code" display="none" order="100">
                 <widget type="text" fieldname="id" readonly="true" />
+            </column>
+            <column name="product-code" display="none" order="100">
+                <widget type="text" fieldname="idproduct" readonly="true" />
+            </column>
+            <column name="variant-code" display="none" order="100">
+                <widget type="text" fieldname="idvariant" readonly="true" />
             </column>
             <column name="product" numcolumns="2" order="110">
                 <widget type="text" fieldname="product_reference" icon="fas fa-hashtag" readonly="true" />
@@ -58,20 +64,3 @@
         </group>
     </columns>
 </view>
-
-<!--
-    id
-    idproduct
-        product_reference
-        product_description
-    idvariant
-        referencia (select)
-    idlocation
-        codewarehouse (select)
-        tipo (select)
-
-        aisle (autocomplete: filtro almacen)
-        rack (autocomplete: filtro almacen, pasillo)
-        shelf (autocomplete: filtro almacen, pasillo, armario)
-        bin
--->

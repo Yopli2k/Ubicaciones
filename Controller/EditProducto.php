@@ -51,7 +51,7 @@ class EditProducto extends ParentController
                 $mainViewName = $this->getMainViewName();
                 $idproduct = $this->getViewModelValue($mainViewName, 'idproducto');
                 $where = [new DataBaseWhere('idproduct', $idproduct)];
-                $order = ['codwarehouse' => 'ASC', 'idvariant' => 'ASC'];
+                $order = ['codewarehouse' => 'ASC', 'idvariant' => 'ASC'];
                 $view->loadData('', $where, $order);
                 break;
                 

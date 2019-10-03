@@ -38,8 +38,8 @@
         <column name="shelf" order="140">
             <widget type="text" fieldname="shelf" />
         </column>
-        <column name="bin" order="140">
-            <widget type="text" fieldname="bin" />
+        <column name="drawer" order="140">
+            <widget type="text" fieldname="drawer" />
         </column>
         <column name="storage-type" title="type" order="150">
             <widget type="select" fieldname="storage_type" translate="true">

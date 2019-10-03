@@ -61,7 +61,7 @@ class VariantLocation extends ModelView
             'idproduct' => 'variants_locations.idproduct',
             'idvariant' => 'variants_locations.idvariant',
             'aisle' => 'locations.aisle',
-            'bin' => 'locations.bin',
+            'drawer' => 'locations.drawer',
             'codewarehouse' => 'locations.codewarehouse',
             'rack' => 'locations.rack',
             'shelf' => 'locations.shelf',

@@ -1,6 +1,6 @@
 {
     "aisle": "Pasillo",
-    "bin": "Compartimento",
+    "drawer": "Cajón",
     "location": "Ubicación",
     "locations": "Ubicaciones",
     "rack": "Armario",

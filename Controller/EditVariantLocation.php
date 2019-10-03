@@ -57,7 +57,7 @@ class EditVariantLocation extends EditController
 
         return $pagedata;
     }
-    
+     
     /**
      * Loads the data to display.
      *
@@ -71,6 +71,8 @@ class EditVariantLocation extends EditController
         $mainViewName = $this->getMainViewName();
         if ($viewName == $mainViewName) {
             $view->disableColumn('code', true);  // Force disable PK column
+            $view->disableColumn('product-code', true);  // Force disable Link column with product
+            $view->disableColumn('variant-code', true);  // Force disable Link column with variant product
             
             // Load product and variant data
             $this->loadProductData($viewName);
@@ -97,6 +99,7 @@ class EditVariantLocation extends EditController
     }
     
     /**
+     * Get autocomplete locations items for search user terms
      * 
      * @return array
      */
@@ -105,11 +108,11 @@ class EditVariantLocation extends EditController
         $data = $this->requestGet(['field', 'fieldcode', 'source', 'term', 'codewarehouse']);
 
         $where = [ new DataBaseWhere('codewarehouse', $data['codewarehouse']) ];
-        foreach ($this->getColumnValuesWhere('aisle|rack|shelf|bin', $data['term']) as $condition) {
+        foreach ($this->getColumnValuesWhere('aisle|rack|shelf|drawer', $data['term']) as $condition) {
             $where[] = $condition;
         }
     
-        $order = [ 'aisle' => 'ASC', 'rack' => 'ASC', 'shelf' => 'ASC', 'bin' => 'ASC' ];
+        $order = [ 'aisle' => 'ASC', 'rack' => 'ASC', 'shelf' => 'ASC', 'drawer' => 'ASC' ];
 
         $results = [];
         $location = new Location();
@@ -126,27 +129,45 @@ class EditVariantLocation extends EditController
     }
     
     /**
-     * Create product model and load data
+     * Runs data insert action.
      * 
-     * @param string $viewName
+     * @return bool
      */
-    private function loadProductData($viewName)
+    protected function insertAction()
     {
-        $idproduct = $this->getViewModelValue($viewName, 'idproduct');
-        if (empty($idproduct)) {
-            return;
-        }
-
-        $product = new Producto();
-        if ($product->loadFromCode($idproduct)) {
-            // Inject the product values into the main model. Is necessary for the xml view.
-            $mainModel = $this->getModel();
-            $mainModel->product_reference = $product->referencia;
-            $mainModel->product_description = $product->descripcion;
-        }
-    }
-
+        $product = $this->request->get('idproduct');
+        $reference = $this->request->get('variant_reference');
+        $this->getModel()->setIdVariantFromReference($product, $reference);
+        
+        return parent::insertAction();
+    }    
+    
     /**
+     * Get complete description for variant attributes
+     * 
+     * @param int $idAttribute1
+     * @param int $idAttribute2
+     * @return string
+     */
+    private function getAttributesDescription($idAttribute1, $idAttribute2)
+    {
+        $attributeValue = new AtributoValor();
+        $result = '';
+
+        if (!empty($idAttribute1) && $attributeValue->loadFromCode($idAttribute1)) {
+            $result .= ': ' . $attributeValue->descripcion;
+        }
+
+        if (!empty($idAttribute2) && $attributeValue->loadFromCode($idAttribute2)) {
+            $result .= empty($result) ? ": " : ', ';
+            $result .= $attributeValue->descripcion;
+        }
+
+        return $result;
+    }
+    
+    /**
+     * Get correct database where filter for user terms in base filter columns
      * 
      * @param string $fields
      * @param string $values
@@ -168,6 +189,66 @@ class EditVariantLocation extends EditController
         
         return $result;
     }
+
+    /**
+     * Get array of values for widget select of all variants of one product
+     * 
+     * @param int $idproduct
+     * @return array
+     */
+    private function getVariantAll($idproduct)
+    {
+        $where = [ new DataBaseWhere('idproducto', $idproduct) ];        
+        $order = [ 'referencia' => 'ASC' ];
+        $result = [];
+        
+        $variant = new Variante();
+        foreach ($variant->all($where, $order, 0, 0) as $row) {
+            $title = $row->referencia . $this->getAttributesDescription($row->idatributovalor1, $row->idatributovalor2);
+            $result[] = ['value' => $row->referencia, 'title' => $title];
+        }
+        
+        return $result;
+    }
+
+    /**
+     * Get array of one value for widget select of a variant product
+     * 
+     * @param int $idvariant
+     * @return array
+     */
+    private function getVariantSelected($idvariant)
+    {
+        $variant = new Variante();
+        $variant->loadFromCode($idvariant);
+        $title = $variant->referencia . $this->getAttributesDescription($variant->idatributovalor1, $variant->idatributovalor2);
+
+        $mainModel = $this->getModel();        
+        $mainModel->variant_reference = $variant->referencia;                        
+
+        return ['value' => $variant->referencia, 'title' => $title];
+    }    
+
+    /**
+     * Create product model and load data
+     * 
+     * @param string $viewName
+     */
+    private function loadProductData($viewName)
+    {
+        $idproduct = $this->getViewModelValue($viewName, 'idproduct');
+        if (empty($idproduct)) {
+            return;
+        }
+
+        $product = new Producto();
+        if ($product->loadFromCode($idproduct)) {
+            // Inject the product values into the main model. Is necessary for the xml view.
+            $mainModel = $this->getModel();
+            $mainModel->product_reference = $product->referencia;
+            $mainModel->product_description = $product->descripcion;
+        }
+    }
     
     /**
      * Create variant product model and load data
@@ -182,50 +263,15 @@ class EditVariantLocation extends EditController
         }
 
         $idvariant = $this->getViewModelValue($viewName, 'idvariant');
-        
-        $variant = new Variante();
-        $where = [ new DataBaseWhere('idproducto', $idproduct) ];
-        $order = [ 'referencia' => 'ASC' ];
-        
-        $values = [];
-        foreach ($variant->all($where, $order, 0, 0) as $row) {
-            // Inject the variant product values into the main model. Is necessary for the xml view.
-            if ($row->idvariante == $idvariant) {
-                $mainModel = $this->getModel();
-                $mainModel->variant_reference = $row->referencia;                        
-            }
-
-            $title = $row->referencia . $this->getAttributesDescription($row->idatributovalor1, $row->idatributovalor2);
-            $values[] = ['value' => $row->referencia, 'title' => $title];
-        }
-
+  
+        $values = empty($idvariant)
+            ? $this->getVariantAll($idproduct)
+            : $this->getVariantSelected($idvariant);
+                
         // Add variant data to widget select array
         $columnReference = $this->views[$viewName]->columnForName('reference');
         if ($columnReference) {
             $columnReference->widget->setValuesFromArray($values, false);
         }
-    }
-    
-    /**
-     * 
-     * @param int $idAttribute1
-     * @param int $idAttribute2
-     * @return string
-     */
-    private function getAttributesDescription($idAttribute1, $idAttribute2)
-    {
-        $attributeValue = new AtributoValor();
-        $result = '';
-
-        if (!empty($idAttribute1) && $attributeValue->loadFromCode($idAttribute1)) {
-            $result .= ': ' . $attributeValue->descripcion;
-        }
-
-        if (!empty($idAttribute2) && $attributeValue->loadFromCode($idAttribute2)) {
-            $result .= empty($result) ? ": " : ', ';
-            $result .= $attributeValue->descripcion;
-        }
-
-        return $result;
     }
 }

@@ -45,9 +45,9 @@ class ListAlmacen extends ParentController
     protected function createViewLocations($viewName = 'ListLocation')
     {
         $this->addView($viewName, 'Location', 'locations', 'fas fa-map-marker-alt');
-        $this->addSearchFields($viewName, ['aisle', 'rack', 'shelf', 'bin']);
-        $this->addOrderBy($viewName, ['codewarehouse', 'aisle', 'rack', 'shelf', 'bin'], 'warehouse');
-        $this->addOrderBy($viewName, ['aisle', 'rack', 'shelf', 'bin', 'codewarehouse'], 'aisle');
+        $this->addSearchFields($viewName, ['aisle', 'rack', 'shelf', 'drawer']);
+        $this->addOrderBy($viewName, ['codewarehouse', 'aisle', 'rack', 'shelf', 'drawer'], 'warehouse');
+        $this->addOrderBy($viewName, ['aisle', 'rack', 'shelf', 'drawer', 'codewarehouse'], 'aisle');
         
         $warehouseValues = $this->codeModel->all('almacenes', 'codalmacen', 'nombre');
         $this->addFilterSelect($viewName, 'warehouse', 'warehouse', 'codewarehouse', $warehouseValues);        
