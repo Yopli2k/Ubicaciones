@@ -25,9 +25,9 @@
             <widget type="text" fieldname="id" />
         </column>
         <column name="warehouse" order="110">
-            <widget type="text" fieldname="namewarehouse" />
+            <widget type="text" fieldname="codewarehouse" />
         </column>        
-        <column name="product" order="120">
+        <column name="product" display="none" order="120">
             <widget type="text" fieldname="nameproduct" />
         </column>        
         <column name="reference" order="130">

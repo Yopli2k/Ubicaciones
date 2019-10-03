@@ -227,7 +227,7 @@ class EditVariantLocation extends EditController
         $mainModel = $this->getModel();        
         $mainModel->variant_reference = $variant->referencia;                        
 
-        return ['value' => $variant->referencia, 'title' => $title];
+        return [['value' => $variant->referencia, 'title' => $title]];
     }    
 
     /**
