@@ -99,7 +99,7 @@ class Location extends ModelClass
      * 
      * @return array
      */
-    public static function getFilterSelectValues(): Array
+    public static function getFilterSelectValues()
     {
         return [
             ['code' => self::TYPE_STORAGE_STORAGE, 'description' => self::toolBox()->i18n()->trans('storage')],
@@ -218,7 +218,7 @@ class Location extends ModelClass
      * 
      * @return boolean
      */
-    private function hasValues(): boolean
+    private function hasValues()
     {
         return !(empty($this->aisle) 
             && empty($this->rack) 
