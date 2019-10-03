@@ -34,6 +34,14 @@ use FacturaScripts\Plugins\Ubicaciones\Model\Location;
 class EditVariantLocation extends EditController
 {
     
+    protected function createViews()
+    {
+        parent::createViews();
+        
+        /// disable new button
+        $this->setSettings($this->getMainViewName(), 'btnNew', false);
+    }
+    
     /**
      * Returns the model name
      */
