@@ -1,0 +1,14 @@
+{
+    "aisle": "Aisle",
+    "bin": "Bin",
+    "location": "Location",
+    "locations": "Locations",
+    "rack": "Rack",
+    "shelf": "Shelf",
+    "storage": "Storage",
+    "picking": "Picking",    
+    "one-field-required": "You must report at least one value for the fields",
+    "warehouse-required": "You must report a warehouse",
+    "variant-location": "Merchandise Location",
+    "validation-code": "Validation Code"    
+}

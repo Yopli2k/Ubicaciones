@@ -19,11 +19,13 @@
 namespace FacturaScripts\Plugins\Ubicaciones\Controller;
 
 use FacturaScripts\Core\Controller\ListAlmacen as ParentController;
+use FacturaScripts\Plugins\Ubicaciones\Model\Location;
 
 /**
- *  Controller to list the items in the Ubicacion model
+ *  Controller to list the items in the Location model
  *
- * @author Daniel fernández     <hola@danielfg.es>
+ * @author Daniel fernández <hola@danielfg.es>
+ * @author Artex Trading sa <jcuello@artextrading.com>
  */
 class ListAlmacen extends ParentController
 {
@@ -33,15 +35,26 @@ class ListAlmacen extends ParentController
     protected function createViews()
     {
         parent::createViews();
-        $this->createViewUbicaciones();
+        $this->createViewLocations();
     }
 
     /**
      * 
-     * @param string $name
+     * @param string $viewName
      */
-    protected function createViewUbicaciones($name = 'ListUbicacion')
+    protected function createViewLocations($viewName = 'ListLocation')
     {
-        $this->addView($name, 'Ubicacion', 'ubications', 'fas fa-search-location');
+        $this->addView($viewName, 'Location', 'locations', 'fas fa-map-marker-alt');
+        $this->addSearchFields($viewName, ['aisle', 'rack', 'shelf', 'bin']);
+        $this->addOrderBy($viewName, ['codewarehouse', 'aisle', 'rack', 'shelf', 'bin'], 'warehouse');
+        $this->addOrderBy($viewName, ['aisle', 'rack', 'shelf', 'bin', 'codewarehouse'], 'aisle');
+        
+        $warehouseValues = $this->codeModel->all('almacenes', 'codalmacen', 'nombre');
+        $this->addFilterSelect($viewName, 'warehouse', 'warehouse', 'codewarehouse', $warehouseValues);        
+
+        $aisleValues = $this->codeModel->all('locations', 'aisle', 'aisle');
+        $this->addFilterSelect($viewName, 'aisle', 'aisle', 'aisle', $aisleValues);        
+        
+        $this->addFilterSelect($viewName, 'storage-type', 'type', 'storage_type', Location::getFilterSelectValues());        
     }
 }

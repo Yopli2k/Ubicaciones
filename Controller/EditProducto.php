@@ -18,14 +18,14 @@
  */
 namespace FacturaScripts\Plugins\Ubicaciones\Controller;
 
-use FacturaScripts\Plugins\Ubicaciones\Model\UbicacionesAlmacenes;
 use FacturaScripts\Core\Base\DataBase\DataBaseWhere;
 use FacturaScripts\Core\Controller\EditProducto as ParentController;
 
 /**
- * Controller to edit a single item from the EditProducto model
+ * Controller to edit a single item from the Producto model
  *
- * @author Daniel Fernández    <hola@danielfg.es>
+ * @author Daniel Fernández <hola@danielfg.es>
+ * @author Artex Trading sa <jcuello@artextrading.com>
  */
 class EditProducto extends ParentController
 {
@@ -35,7 +35,7 @@ class EditProducto extends ParentController
     protected function createViews()
     {
         parent::createViews();
-        $this->addEditListView('EditProductoUbicacion', 'ProductoUbicacion', 'ubication', 'fas fa-search-location');
+        $this->addListView('ListVariantLocation', 'ModelView\VariantLocation', 'locations', 'fas fa-search-location');
     }
     
     /**
@@ -47,31 +47,14 @@ class EditProducto extends ParentController
     protected function loadData($viewName, $view)
     {
         switch ($viewName) {
-            case 'EditProductoUbicacion':
-                $idproducto = $this->getViewModelValue('EditProducto', 'idproducto');
-                $where = [new DataBaseWhere('idproducto', $idproducto)];
-                $view->loadData('', $where, []);
-                
-                $modelUbicacionesAlmacenes = new UbicacionesAlmacenes();
-                $UbicacionesAlmacenes = $modelUbicacionesAlmacenes->all([]);
-                $customValues = [];
-                
-                foreach ($UbicacionesAlmacenes as $ubicacion) {
-                    $aux = [
-                        'value' => $ubicacion->codubicacion,
-                        'title' => 
-                            $this->i18n->trans('warehouse').': '.$ubicacion->nombre.' '.
-                            $this->i18n->trans('pasillo').': '.$ubicacion->pasillo.' '.
-                            $this->i18n->trans('seccion').': '.$ubicacion->seccion.' '.
-                            $this->i18n->trans('altura').': '.$ubicacion->altura
-                    ];
-
-                    array_push($customValues, $aux);
-                }
-                
-                $columnToModify = $this->views['EditProductoUbicacion']->columnForName('ubication');
-                $columnToModify->widget->setValuesFromArray($customValues);
+            case 'ListVariantLocation':
+                $mainViewName = $this->getMainViewName();
+                $idproduct = $this->getViewModelValue($mainViewName, 'idproducto');
+                $where = [new DataBaseWhere('idproduct', $idproduct)];
+                $order = ['codwarehouse' => 'ASC', 'idvariant' => 'ASC'];
+                $view->loadData('', $where, $order);
                 break;
+                
             default:
                 parent::loadData($viewName, $view);
         }

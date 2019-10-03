@@ -1,7 +1,14 @@
 {
-    "ubications": "Ubicaciones",
-    "ubication": "Ubicación",
-    "pasillo": "Pasillo",
-    "seccion": "Sección",
-    "altura": "Altura"
+    "aisle": "Pasillo",
+    "bin": "Compartimento",
+    "location": "Ubicación",
+    "locations": "Ubicaciones",
+    "rack": "Armario",
+    "shelf": "Estante",
+    "storage": "Almacenar",
+    "picking": "Picking",
+    "one-field-required": "Debe informar al menos un valor para los campos",
+    "warehouse-required": "Debe informar un almacén",
+    "variant-location": "Ubicación de mercancía",
+    "validation-code": "Cod. Validación"
 }

@@ -18,14 +18,15 @@
  */
 namespace FacturaScripts\Plugins\Ubicaciones\Controller;
 
-use FacturaScripts\Core\Lib\ExtendedController;
+use FacturaScripts\Core\Lib\ExtendedController\EditController;
 
 /**
- * Controller to edit a single item from the EditUbicacion model
+ * Controller to edit a single item from the Location model
  *
- * @author Daniel Fernández    <hola@danielfg.es>
+ * @author Daniel Fernández <hola@danielfg.es>
+ * @author Artex Trading sa <jcuello@artextrading.com>
  */
-class EditUbicacion extends ExtendedController\EditController
+class EditLocation extends EditController
 {
 
     /**
@@ -33,7 +34,7 @@ class EditUbicacion extends ExtendedController\EditController
      */
     public function getModelClassName()
     {
-        return 'Ubicacion';
+        return 'Location';
     }
 
     /**
@@ -44,9 +45,9 @@ class EditUbicacion extends ExtendedController\EditController
     public function getPageData()
     {
         $pagedata = parent::getPageData();
-        $pagedata['title'] = 'ubication';
+        $pagedata['title'] = 'location';
         $pagedata['menu'] = 'warehouse';
-        $pagedata['icon'] = 'fas fa-search-location';
+        $pagedata['icon'] = 'fas fa-map-marker-alt';
         $pagedata['showonmenu'] = false;
 
         return $pagedata;
