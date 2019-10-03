@@ -74,9 +74,10 @@ class EditVariantLocation extends EditController
             $view->disableColumn('product-code', true);  // Force disable Link column with product
             $view->disableColumn('variant-code', true);  // Force disable Link column with variant product
             
-            // Load product and variant data
+            // Load product, variant and location data
             $this->loadProductData($viewName);
             $this->loadVariantData($viewName);
+            $this->loadLocationDescription($viewName);
         }
     }
 
@@ -230,6 +231,24 @@ class EditVariantLocation extends EditController
     }    
 
     /**
+     * Create variant product model and load data
+     * 
+     * @param string $viewName
+     */
+    private function loadLocationDescription($viewName)
+    {
+        $idlocation = $this->getViewModelValue($viewName, 'idlocation');
+        if (empty($idlocation)) {
+            return;
+        }
+        
+        $columnLocation = $this->views[$viewName]->columnForName('location');
+        if ($columnLocation) {
+            $columnLocation->widget->setSelected(Location::descriptionLocation($idlocation));
+        }
+    }
+    
+    /**
      * Create product model and load data
      * 
      * @param string $viewName
@@ -273,5 +292,5 @@ class EditVariantLocation extends EditController
         if ($columnReference) {
             $columnReference->widget->setValuesFromArray($values, false);
         }
-    }
+    }    
 }

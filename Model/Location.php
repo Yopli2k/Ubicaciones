@@ -181,6 +181,20 @@ class Location extends ModelClass
     }
     
     /**
+     * Get complete description for specified location
+     * 
+     * @return string
+     */
+    public static function descriptionLocation($idlocation)
+    {
+        $location = new self();
+        if ($location->loadFromCode($idlocation)) {
+            return $location->descriptionComplete();
+        }
+        return $idlocation;
+    }
+    
+    /**
      * Returns true if there are no errors in the values of the model properties.
      * It runs inside the save method.
      *
