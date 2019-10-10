@@ -63,4 +63,12 @@
             </column>
         </group>
     </columns>
+    <rows>
+        <row type="actions">
+            <button type="js" label='help' color="primary" action="$('#help-card').toggle()" icon="fas fa-question-circle" />
+        </row>
+        <row type="footer">
+            <group name="help" id="help-card" class="collapse" html="Block/EditVariantLocationInfo.html.twig"></group>
+        </row>
+    </rows>    
 </view>
