@@ -16,10 +16,9 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-namespace FacturaScripts\Plugins\Ubicaciones\Controller;
+namespace FacturaScripts\Plugins\Ubicaciones\Extension\Controller;
 
 use FacturaScripts\Core\Base\DataBase\DataBaseWhere;
-use FacturaScripts\Core\Controller\EditProducto as ParentController;
 
 /**
  * Controller to edit a single item from the Producto model
@@ -27,15 +26,16 @@ use FacturaScripts\Core\Controller\EditProducto as ParentController;
  * @author Daniel Fernández <hola@danielfg.es>
  * @author Artex Trading sa <jcuello@artextrading.com>
  */
-class EditProducto extends ParentController
+class EditProducto
 {
     /**
      * Load views
      */
-    protected function createViews()
+    public function createViews()
     {
-        parent::createViews();
-        $this->addListView('ListVariantLocation', 'ModelView\VariantLocation', 'locations', 'fas fa-search-location');
+        return function() {
+            $this->addListView('ListVariantLocation', 'ModelView\VariantLocation', 'locations', 'fas fa-search-location');            
+        };
     }
     
     /**
@@ -44,19 +44,16 @@ class EditProducto extends ParentController
      * @param string                      $viewName
      * @param ExtendedController\BaseView $view
      */
-    protected function loadData($viewName, $view)
+    public function loadData()
     {
-        switch ($viewName) {
-            case 'ListVariantLocation':
+        return function($viewName, $view) {
+            if ($viewName == 'ListVariantLocation') {
                 $mainViewName = $this->getMainViewName();
                 $idproduct = $this->getViewModelValue($mainViewName, 'idproducto');
                 $where = [new DataBaseWhere('idproduct', $idproduct)];
                 $order = ['codewarehouse' => 'ASC', 'idvariant' => 'ASC'];
-                $view->loadData('', $where, $order);
-                break;
-                
-            default:
-                parent::loadData($viewName, $view);
-        }
+                $view->loadData('', $where, $order);                
+            }
+        };
     }
 }
