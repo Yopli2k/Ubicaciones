@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+    Document   : variants_locations.xml
+    Author     : Daniel Fernández Giménez
+    Description:
+        Structure for the variants locations table.
+-->
+<table>
+    <column>
+        <name>id</name>
+        <type>serial</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>idlocation</name>
+        <type>integer</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>idproduct</name>
+        <type>integer</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>idvariant</name>
+        <type>integer</type>
+        <null>NO</null>
+    </column>
+    <constraint>
+        <name>variantslocations_pkey</name>
+        <type>PRIMARY KEY (id)</type>
+    </constraint>
+    <constraint>
+        <name>ca_variantslocations_locations</name>
+        <type>FOREIGN KEY (idlocation) REFERENCES locations (id) ON DELETE RESTRICT ON UPDATE CASCADE</type>
+    </constraint>
+    <constraint>
+        <name>ca_variantslocations_products</name>
+        <type>FOREIGN KEY (idproduct) REFERENCES productos (idproducto) ON DELETE CASCADE ON UPDATE CASCADE</type>
+    </constraint>
+    <constraint>
+        <name>ca_variantslocations_variants</name>
+        <type>FOREIGN KEY (idvariant) REFERENCES variantes (idvariante) ON DELETE RESTRICT ON UPDATE CASCADE</type>
+    </constraint>
+    <constraint>
+        <name>uniq_variantslocations</name>
+        <type>UNIQUE (idlocation,idvariant)</type>
+    </constraint>
+</table>

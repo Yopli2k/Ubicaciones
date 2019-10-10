@@ -17,25 +17,35 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  * @author Daniel Fernández <hola@danielfg.es>
+ * @author Artex Trading sa <jcuello@artextrading.com>
 -->
 <view>
-    <columns>        
-        <column name="warehouse" numcolumns="3">
-            <widget type="select" fieldname="codalmacen" required="true">
+    <columns>
+        <column name="code" display="none" order="100">
+            <widget type="text" fieldname="id" />
+        </column>
+        <column name="warehouse" order="110">
+            <widget type="select" fieldname="codewarehouse">
                 <values source="almacenes" fieldcode="codalmacen" fieldtitle="nombre"></values>
             </widget>
+        </column>        
+        <column name="aisle" order="120">
+            <widget type="text" fieldname="aisle" />
+        </column>        
+        <column name="rack" order="130">
+            <widget type="text" fieldname="rack" />
+        </column>        
+        <column name="shelf" order="140">
+            <widget type="text" fieldname="shelf" />
         </column>
-        
-        <column name="pasillo" numcolumns="3">
-            <widget type="text" fieldname="pasillo" required="true" />
+        <column name="drawer" order="140">
+            <widget type="text" fieldname="drawer" />
         </column>
-
-        <column name="seccion" numcolumns="3">
-            <widget type="text" fieldname="seccion" />
-        </column>
-
-        <column name="altura" numcolumns="3">
-            <widget type="text" fieldname="altura" />
-        </column>
+        <column name="storage-type" title="type" order="150">
+            <widget type="select" fieldname="storage_type" translate="true">
+                <values title="storage">0</values>
+                <values title="picking">1</values>
+            </widget>
+        </column>        
     </columns>
 </view>

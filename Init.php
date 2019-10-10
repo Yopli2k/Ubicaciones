@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
- * This file is part of webportal plugin for FacturaScripts.
- * Copyright (C) 2018 Carlos Garcia Gomez  <carlos@facturascripts.com>
+<?php
+/**
+ * This file is part of SamplePlugin for FacturaScripts
+ * Copyright (C) 2019 Carlos Garcia Gomez <carlos@facturascripts.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as
@@ -15,16 +15,26 @@
  *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+namespace FacturaScripts\Plugins\Ubicaciones;
+
+use FacturaScripts\Core\Base\InitClass;
+
+/**
+ * Description of Init
  *
- * @author Daniel Fernández <hola@danielfg.es>
--->
-<view>
-    <columns>
-        <column name="product" display="none" order="100">
-            <widget type="text" fieldname="idproducto" required="true" />
-        </column>
-        <column name="ubication" numcolumns="12" order="100">
-            <widget type="select" fieldname="codubicacion" readonly="dinamic" required="true"></widget>
-        </column>
-    </columns>
-</view>
+ * @author Artex Trading sa <jcuello@artextrading.com>
+ */
+class Init extends InitClass
+{
+    public function init()
+    {
+        $this->loadExtension(new Extension\Controller\EditProducto());
+        $this->loadExtension(new Extension\Controller\ListAlmacen());
+    }
+
+    public function update()
+    {
+        ;
+    }
+}

@@ -1,7 +1,17 @@
 {
-    "ubications": "Ubicaciones",
-    "ubication": "Ubicación",
-    "pasillo": "Pasillo",
-    "seccion": "Sección",
-    "altura": "Altura"
+    "aisle": "Pasillo",
+    "drawer": "Cajón",
+    "location": "Ubicación",
+    "locations": "Ubicaciones",
+    "rack": "Armario",
+    "shelf": "Estante",
+    "storage": "Almacenar",
+    "picking": "Picking",
+    "one-field-required": "Debe informar al menos un valor para los campos",
+    "warehouse-required": "Debe informar un almacén",
+    "variant-location": "Ubicación de mercancía",
+    "validation-code": "Cod. Validación",
+    "location-leyend": "Leyenda de Ubicación de mercancía",
+    "storage-type-desc": "Indica si la ubicación se utiliza para almacenar mercancía en palets o es un lugar donde se puede coger el la mercancía para pedidos/ventas.",
+    "location-desc": "Localización física de la mercancía. Puede introducir los distintos valores (Pasillo/Armario/Estante/Cajón) separados por espacio. Esto le ayudará a filtrar a la hora de seleccionar la ubicación. <b>IMPORTANTE:</b> Una vez seleccionada una ubicación deberá borrar todo el texto para seleccionar otra."
 }
