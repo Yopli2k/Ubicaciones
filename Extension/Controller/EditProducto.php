@@ -34,7 +34,7 @@ class EditProducto
     public function createViews()
     {
         return function() {
-            $this->addListView('ListVariantLocation', 'ModelView\VariantLocation', 'locations', 'fas fa-search-location');            
+            $this->addListView('ListVariantLocation', 'ModelView\VariantLocation', 'locations', 'fas fa-search-location');
         };
     }
     

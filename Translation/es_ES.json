@@ -13,5 +13,5 @@
     "validation-code": "Cod. Validación",
     "location-leyend": "Leyenda de Ubicación de mercancía",
     "storage-type-desc": "Indica si la ubicación se utiliza para almacenar mercancía en palets o es un lugar donde se puede coger el la mercancía para pedidos/ventas.",
-    "location-desc": "Localización física de la mercancía. Puede introducir los distintos valores (Pasillo/Armario/Estante/Cajón) separados por espacio. Esto le ayudará a filtrar a la hora de seleccionar la ubicación."
+    "location-desc": "Localización física de la mercancía. Puede introducir los distintos valores (Pasillo/Armario/Estante/Cajón) separados por espacio. Esto le ayudará a filtrar a la hora de seleccionar la ubicación. <b>IMPORTANTE:</b> Una vez seleccionada una ubicación deberá borrar todo el texto para seleccionar otra."
 }

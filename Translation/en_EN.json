@@ -10,5 +10,8 @@
     "one-field-required": "You must report at least one value for the fields",
     "warehouse-required": "You must report a warehouse",
     "variant-location": "Merchandise Location",
-    "validation-code": "Validation Code"    
+    "validation-code": "Validation Code",
+    "location-leyend": "Merchandise Location Legend",
+    "storage-type-desc": "Indicates whether the location is used to store merchandise on pallets or is a place where merchandise can be picked up for orders/sales.",
+    "location-desc": "Physical location of the merchandise. You can enter the different values (Aisle/Rack/Shelf/Drawer) separated by space. This will help you filter when selecting the location. <b>IMPORTANT:</b> Once a location is selected you must delete all the text to select another."
 }
