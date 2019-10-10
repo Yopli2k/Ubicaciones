@@ -13,7 +13,7 @@ Classification levels:
     <li>aisle: Corridor inside the warehose</li>
     <li>rack:  Cupboard or area within the aisle</li>
     <li>shelf: Closet band into rack</li>
-    <li>bin: Compartment inside the closet band</li>
+    <li>drawer: Compartment inside the closet band</li>
 </ul>
 
 <ul>
