@@ -151,6 +151,12 @@ class Location extends ModelClass
         $this->storage_type = self::TYPE_STORAGE_STORAGE;
     }
     
+    /**
+     * 
+     * @param string $description
+     * @param string $value
+     * @param string $label
+     */
     private function addToDescription(&$description, $value, $label)
     {
         if (($value == '') || ($value == null)) {
@@ -202,11 +208,6 @@ class Location extends ModelClass
      */
     public function test()
     {
-        if (empty($this->codewarehouse)) {
-            $this->toolBox()->i18nLog()->warning('warehouse-required');
-            return false;            
-        }
-        
         if (!$this->hasValues()) {
             $this->toolBox()->i18nLog()->warning('one-field-required');
             return false;

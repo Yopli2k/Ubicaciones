@@ -115,12 +115,7 @@ class EditVariantLocation extends EditController
     protected function autocompleteForLocations()
     {
         $data = $this->requestGet(['field', 'fieldcode', 'source', 'term', 'codewarehouse']);
-
-        $where = [ new DataBaseWhere('codewarehouse', $data['codewarehouse']) ];
-        foreach ($this->getColumnValuesWhere('aisle|rack|shelf|drawer', $data['term']) as $condition) {
-            $where[] = $condition;
-        }
-    
+        $where = $this->getAutocompleteWhere($data);
         $order = [ 'aisle' => 'ASC', 'rack' => 'ASC', 'shelf' => 'ASC', 'drawer' => 'ASC' ];
 
         $results = [];
@@ -172,6 +167,24 @@ class EditVariantLocation extends EditController
             $result .= $attributeValue->descripcion;
         }
 
+        return $result;
+    }
+
+    /**
+     * Return array of where filters from user form data
+     * 
+     * @param array $data
+     * @return DataBaseWhere[]
+     */
+    private function getAutocompleteWhere($data)
+    {
+        $result = empty($data['codewarehouse'])
+            ? [ new DataBaseWhere('codewarehouse', null, 'IS') ]
+            : [ new DataBaseWhere('codewarehouse', $data['codewarehouse']) ];
+        
+        foreach ($this->getColumnValuesWhere('aisle|rack|shelf|drawer', $data['term']) as $condition) {
+            $result[] = $condition;
+        }
         return $result;
     }
     

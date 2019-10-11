@@ -41,7 +41,7 @@
         </group>
         <group name="warehouse" title="warehouse" numcolumns="6" icon="fas fa-warehouse">
             <column name="warehouse" numcolumns="8" order="210">
-                <widget type="select" fieldname="codewarehouse" onclick="EditAlmacen" required="true" readonly="dinamic">
+                <widget type="select" fieldname="codewarehouse" onclick="EditAlmacen" readonly="dinamic">
                     <values source="almacenes" fieldcode="codalmacen" fieldtitle="nombre"></values>
                 </widget>
             </column>

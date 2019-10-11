@@ -23,7 +23,7 @@
     <columns>        
         <group name="data" numcolumns="12">
             <column name="warehouse" numcolumns="4" order="110">
-                <widget type="select" fieldname="codewarehouse" required="true">
+                <widget type="select" fieldname="codewarehouse">
                     <values source="almacenes" fieldcode="codalmacen" fieldtitle="nombre"></values>
                 </widget>
             </column>        

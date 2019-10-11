@@ -17,7 +17,6 @@
     <column>
         <name>codewarehouse</name>
         <type>character varying(4)</type>
-        <null>NO</null>
     </column>
     <column>
         <name>id</name>
