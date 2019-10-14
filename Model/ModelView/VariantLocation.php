@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of webportal plugin for FacturaScripts.
+ * This file is part of Ubicaciones plugin for FacturaScripts.
  * Copyright (C) 2018 Carlos Garcia Gomez  <carlos@facturascripts.com>
  *
  * This program is free software: you can redistribute it and/or modify
