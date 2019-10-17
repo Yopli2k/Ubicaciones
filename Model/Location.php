@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of Ubicaciones plugin for FacturaScripts.
- * Copyright (C) 2017-2019 Carlos Garcia Gomez <carlos@facturascripts.com>
+ * Copyright (C) 2019 Jose Antonio Cuello Principal <jcuello@artextrading.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as
@@ -26,35 +26,34 @@ use FacturaScripts\Dinamic\Model\Almacen;
 /**
  * Each of the existing locations within a warehouse
  *
- * @author Daniel Fernández <hola@danielfg.es>
- * @author Artex Trading sa <jcuello@artextrading.com>
+ * @author Jose Antonio Cuello Principal <jcuello@artextrading.com>
  */
 class Location extends ModelClass
 {
-    
+
     use ModelTrait;
 
     // Type of storage
     const TYPE_STORAGE_STORAGE = 0;
     const TYPE_STORAGE_PICKING = 1;
-    
+
     /**
      * Corridor inside the warehose.
-     * 
+     *
      * @var string
      */
     public $aisle;
-    
+
     /**
      * Compartment inside the closet band.
-     * 
+     *
      * @var string
      */
     public $drawer;
 
     /**
      * Link to the Warehouse model
-     * 
+     *
      * @var string
      */
     public $codewarehouse;
@@ -68,14 +67,14 @@ class Location extends ModelClass
 
     /**
      * Cupboard or area within the aisle.
-     * 
+     *
      * @var string
      */
     public $rack;
 
     /**
      * Closet band into rack.
-     * 
+     *
      * @var string
      */
     public $shelf;
@@ -85,18 +84,18 @@ class Location extends ModelClass
      *
      * @var int
      */
-    public $storage_type;
+    public $storagetype;
 
     /**
      * Shelf validation code. This is normally used in the preparation of sales orders.
-     * 
+     *
      * @var string
      */
-    public $validation_code;
+    public $validationcode;
 
     /**
      * Return array with values for a ListView select filter
-     * 
+     *
      * @return array
      */
     public static function getFilterSelectValues()
@@ -106,7 +105,7 @@ class Location extends ModelClass
             ['code' => self::TYPE_STORAGE_PICKING, 'description' => self::toolBox()->i18n()->trans('picking')]
         ];
     }
-    
+
     /**
      * This function is called when creating the model table. Returns the SQL
      * that will be executed after the creation of the table. Useful to insert values
@@ -121,7 +120,7 @@ class Location extends ModelClass
 
         return '';
     }
-    
+
     /**
      * Returns the name of the column that is the model's primary key.
      *
@@ -141,18 +140,18 @@ class Location extends ModelClass
     {
         return 'locations';
     }
-    
+
     /**
      * Reset the values of model properties.
      */
     public function clear()
     {
         parent::clear();
-        $this->storage_type = self::TYPE_STORAGE_STORAGE;
+        $this->storagetype = self::TYPE_STORAGE_STORAGE;
     }
-    
+
     /**
-     * 
+     *
      * @param string $description
      * @param string $value
      * @param string $label
@@ -162,17 +161,17 @@ class Location extends ModelClass
         if (($value == '') || ($value == null)) {
             return;
         }
-        
+
         if (!empty($description)) {
             $description .= ' > ';
         }
-        
+
         $description .= $label . ': ' . $value;
     }
-    
+
     /**
      * Get complete description for location
-     * 
+     *
      * @return string
      */
     public function descriptionComplete()
@@ -185,10 +184,10 @@ class Location extends ModelClass
         $this->addToDescription($description, $this->drawer, $i18n->trans('drawer'));
         return $description;
     }
-    
+
     /**
      * Get complete description for specified location
-     * 
+     *
      * @return string
      */
     public static function descriptionLocation($idlocation)
@@ -199,7 +198,7 @@ class Location extends ModelClass
         }
         return $idlocation;
     }
-    
+
     /**
      * Returns true if there are no errors in the values of the model properties.
      * It runs inside the save method.
@@ -214,7 +213,7 @@ class Location extends ModelClass
         }
         return parent::test();
     }
-    
+
     /**
      * Returns the url where to see / modify the data.
      *
@@ -227,17 +226,17 @@ class Location extends ModelClass
     {
         return parent::url($type, 'ListAlmacen?activetab=List');
     }
-    
+
     /**
      * Check if there are location values informed.
-     * 
+     *
      * @return boolean
      */
     private function hasValues()
     {
-        return !(empty($this->aisle) 
-            && empty($this->rack) 
-            && empty($this->shelf) 
+        return !(empty($this->aisle)
+            && empty($this->rack)
+            && empty($this->shelf)
             && empty($this->drawer)
         );
     }

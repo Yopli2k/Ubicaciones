@@ -1,7 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--
+    This file is part of Ubicaciones plugin for FacturaScripts.
+    Copyright (C) 2019 Jose Antonio Cuello Principal <jcuello@artextrading.com>
+
     Document   : locations.xml
-    Author     : Daniel Fernández Giménez
+    Author     : Jose Antonio Cuello Principal
     Description:
         Structure for the warehouse locations table.
 -->
@@ -32,13 +35,13 @@
         <type>character varying(15)</type>
     </column>
     <column>
-        <name>storage_type</name>
+        <name>storagetype</name>
         <type>integer</type>
         <null>NO</null>
         <default>0</default>
     </column>
     <column>
-        <name>validation_code</name>
+        <name>validationcode</name>
         <type>character varying(13)</type>
     </column>
     <constraint>
@@ -51,6 +54,6 @@
     </constraint>
     <constraint>
         <name>uniq_locations</name>
-        <type>UNIQUE (codewarehouse,storage_type,aisle,rack,shelf,drawer)</type>
+        <type>UNIQUE (codewarehouse,storagetype,aisle,rack,shelf,drawer)</type>
     </constraint>
 </table>
