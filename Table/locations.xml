@@ -1,7 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--
+    This file is part of Ubicaciones plugin for FacturaScripts.
+    Copyright (C) 2019 Jose Antonio Cuello Principal <jcuello@artextrading.com>
+
     Document   : locations.xml
-    Author     : Daniel Fernández Giménez
+    Author     : Jose Antonio Cuello Principal
     Description:
         Structure for the warehouse locations table.
 -->

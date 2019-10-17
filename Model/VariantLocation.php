@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of Ubicaciones plugin for FacturaScripts.
- * Copyright (C) 2017-2019 Carlos Garcia Gomez <carlos@facturascripts.com>
+ * Copyright (C) 2019 Jose Antonio Cuello Principal <jcuello@artextrading.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as
@@ -28,8 +28,7 @@ use FacturaScripts\Plugins\Ubicaciones\Model\Location;
 /**
  * Location of product variants in the warehouse
  *
- * @author Daniel Fernández <hola@danielfg.es>
- * @author Artex Trading sa <jcuello@artextrading.com>
+ * @author Jose Antonio Cuello Principal <jcuello@artextrading.com>
  */
 class VariantLocation extends ModelClass
 {
@@ -37,32 +36,32 @@ class VariantLocation extends ModelClass
 
     /**
      * Primary key.
-     * 
+     *
      * @var int
      */
     public $id;
-    
+
     /**
      * Link to the location model.
-     * 
+     *
      * @var int
      */
     public $idlocation;
-    
+
     /**
      * Link to the product model.
-     * 
+     *
      * @var int
      */
     public $idproduct;
-    
+
     /**
      * Link to the variant product model.
-     * 
+     *
      * @var int
      */
     public $idvariant;
-        
+
     /**
      * This function is called when creating the model table. Returns the SQL
      * that will be executed after the creation of the table. Useful to insert values
@@ -78,7 +77,7 @@ class VariantLocation extends ModelClass
 
         return '';
     }
-    
+
     /**
      * Returns the name of the column that is the model's primary key.
      *
@@ -97,26 +96,26 @@ class VariantLocation extends ModelClass
     public static function tableName()
     {
         return 'variants_locations';
-    }    
-    
+    }
+
     /**
      * Set a id of variant from product and variant reference
-     * 
+     *
      * @param string $product
      * @param string $reference
      */
     public function setIdVariantFromReference($product, $reference)
     {
-        $where = [ 
+        $where = [
             new DataBaseWhere('idproducto', $product),
-            new DataBaseWhere('referencia', $reference) 
+            new DataBaseWhere('referencia', $reference)
         ];
-        
+
         $variant = new Variante();
         $variant->loadFromCode('', $where);
-        $this->idvariant = $variant->idvariante;        
-    }    
-    
+        $this->idvariant = $variant->idvariante;
+    }
+
     /**
      * Returns the url where to see / modify the data.
      *
@@ -129,5 +128,5 @@ class VariantLocation extends ModelClass
     {
         $list = 'EditProducto?code=' . $this->idproduct . '&active=List';
         return parent::url($type, $list);
-    }    
+    }
 }

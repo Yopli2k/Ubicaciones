@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of Ubicaciones plugin for FacturaScripts.
- * Copyright (C) 2018 Carlos Garcia Gomez  <carlos@facturascripts.com>
+ * Copyright (C) 2019 Jose Antonio Cuello Principal <jcuello@artextrading.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as
@@ -25,12 +25,11 @@ use FacturaScripts\Plugins\Ubicaciones\Model\VariantLocation as VariantLocationM
 /**
  * Location of Variant products. Model View.
  *
- * @author Daniel Fernández <hola@danielfg.es>
- * @author Artex Trading sa <jcuello@artextrading.com>
+ * @author Jose Antonio Cuello Principal <jcuello@artextrading.com>
  */
 class VariantLocation extends ModelView
 {
-        
+
     /**
      * Constructor and class initializer.
      *
@@ -42,7 +41,7 @@ class VariantLocation extends ModelView
 
         $this->setMasterModel(new VariantLocationModel());
     }
-    
+
     protected function getTables(): array
     {
         return [
@@ -52,7 +51,7 @@ class VariantLocation extends ModelView
             'variantes'
         ];
     }
-    
+
     protected function getFields(): array
     {
         return [
@@ -66,7 +65,7 @@ class VariantLocation extends ModelView
             'rack' => 'locations.rack',
             'shelf' => 'locations.shelf',
             'storage_type' => 'locations.storage_type',
-            'validation_code' => 'locations.validation_code',            
+            'validation_code' => 'locations.validation_code',
             'namewarehouse' => 'almacenes.nombre',
             'nameproduct' => 'productos.descripcion',
             'reference' => 'variantes.referencia',
@@ -77,7 +76,7 @@ class VariantLocation extends ModelView
             'nameattribute2' => 'attribute2.descripcion'
         ];
     }
-    
+
     protected function getSQLFrom(): string {
         return 'variants_locations'
             . ' INNER JOIN productos ON productos.idproducto = variants_locations.idproduct'
@@ -86,5 +85,5 @@ class VariantLocation extends ModelView
             . ' INNER JOIN almacenes ON almacenes.codalmacen = locations.codewarehouse'
             . ' LEFT JOIN atributos_valores attribute1 ON attribute1.id = variantes.idatributovalor1'
             . ' LEFT JOIN atributos_valores attribute2 ON attribute2.id = variantes.idatributovalor2';
-    }  
+    }
 }

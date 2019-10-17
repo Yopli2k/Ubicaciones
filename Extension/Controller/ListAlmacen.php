@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of Ubicaciones plugin for FacturaScripts.
- * Copyright (C) 2017-2019 Carlos Garcia Gomez <carlos@facturascripts.com>
+ * Copyright (C) 2019 Jose Antonio Cuello Principal <jcuello@artextrading.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as
@@ -23,8 +23,7 @@ use FacturaScripts\Plugins\Ubicaciones\Model\Location;
 /**
  *  Controller to list the items in the Location model
  *
- * @author Daniel Fernández <hola@danielfg.es>
- * @author Artex Trading sa <jcuello@artextrading.com>
+ * @author Jose Antonio Cuello Principal <jcuello@artextrading.com>
  */
 class ListAlmacen
 {
@@ -34,13 +33,13 @@ class ListAlmacen
     public function createViews()
     {
         return function() {
-            $this->createViewLocations();            
-        }; 
+            $this->createViewLocations();
+        };
     }
 
     /**
      * Add and connfigure Location list view
-     * 
+     *
      * @param string $viewName
      */
     public function createViewLocations()
@@ -52,12 +51,12 @@ class ListAlmacen
             $this->addOrderBy($viewName, ['aisle', 'rack', 'shelf', 'drawer', 'codewarehouse'], 'aisle');
 
             $warehouseValues = $this->codeModel->all('almacenes', 'codalmacen', 'nombre');
-            $this->addFilterSelect($viewName, 'warehouse', 'warehouse', 'codewarehouse', $warehouseValues);        
+            $this->addFilterSelect($viewName, 'warehouse', 'warehouse', 'codewarehouse', $warehouseValues);
 
             $aisleValues = $this->codeModel->all('locations', 'aisle', 'aisle');
-            $this->addFilterSelect($viewName, 'aisle', 'aisle', 'aisle', $aisleValues);        
+            $this->addFilterSelect($viewName, 'aisle', 'aisle', 'aisle', $aisleValues);
 
-            $this->addFilterSelect($viewName, 'storage-type', 'type', 'storage_type', Location::getFilterSelectValues());                    
+            $this->addFilterSelect($viewName, 'storage-type', 'type', 'storage_type', Location::getFilterSelectValues());
         };
     }
 }
