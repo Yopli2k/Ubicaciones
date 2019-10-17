@@ -50,7 +50,7 @@ class EditProducto
                 $mainViewName = $this->getMainViewName();
                 $idproduct = $this->getViewModelValue($mainViewName, 'idproducto');
                 $where = [new DataBaseWhere('idproduct', $idproduct)];
-                $order = ['codewarehouse' => 'ASC', 'idvariant' => 'ASC'];
+                $order = ['codewarehouse' => 'ASC', 'reference' => 'ASC'];
                 $view->loadData('', $where, $order);
             }
         };

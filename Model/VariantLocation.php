@@ -58,9 +58,9 @@ class VariantLocation extends ModelClass
     /**
      * Link to the variant product model.
      *
-     * @var int
+     * @var string
      */
-    public $idvariant;
+    public $reference;
 
     /**
      * This function is called when creating the model table. Returns the SQL
@@ -95,25 +95,7 @@ class VariantLocation extends ModelClass
      */
     public static function tableName()
     {
-        return 'variants_locations';
-    }
-
-    /**
-     * Set a id of variant from product and variant reference
-     *
-     * @param string $product
-     * @param string $reference
-     */
-    public function setIdVariantFromReference($product, $reference)
-    {
-        $where = [
-            new DataBaseWhere('idproducto', $product),
-            new DataBaseWhere('referencia', $reference)
-        ];
-
-        $variant = new Variante();
-        $variant->loadFromCode('', $where);
-        $this->idvariant = $variant->idvariante;
+        return 'variantslocations';
     }
 
     /**

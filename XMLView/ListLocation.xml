@@ -39,10 +39,13 @@
             <widget type="text" fieldname="drawer" />
         </column>
         <column name="storage-type" title="type" order="150">
-            <widget type="select" fieldname="storage_type" translate="true">
+            <widget type="select" fieldname="storagetype" translate="true">
                 <values title="storage">0</values>
                 <values title="picking">1</values>
             </widget>
+        </column>
+        <column name="validation-code" display="none" order="160">
+            <widget type="text" fieldname="validationcode" />
         </column>
     </columns>
 </view>

@@ -3,7 +3,7 @@
     This file is part of Ubicaciones plugin for FacturaScripts.
     Copyright (C) 2019 Jose Antonio Cuello Principal <jcuello@artextrading.com>
 
-    Document   : variants_locations.xml
+    Document   : variantslocations.xml
     Author     : Jose Antonio Cuello Principal
     Description:
         Structure for the variants locations table.
@@ -25,8 +25,8 @@
         <null>NO</null>
     </column>
     <column>
-        <name>idvariant</name>
-        <type>integer</type>
+        <name>reference</name>
+        <type>character varying(30)</type>
         <null>NO</null>
     </column>
     <constraint>
@@ -43,10 +43,10 @@
     </constraint>
     <constraint>
         <name>ca_variantslocations_variants</name>
-        <type>FOREIGN KEY (idvariant) REFERENCES variantes (idvariante) ON DELETE RESTRICT ON UPDATE CASCADE</type>
+        <type>FOREIGN KEY (reference) REFERENCES variantes (referencia) ON DELETE RESTRICT ON UPDATE CASCADE</type>
     </constraint>
     <constraint>
         <name>uniq_variantslocations</name>
-        <type>UNIQUE (idlocation,idvariant)</type>
+        <type>UNIQUE (idlocation,reference)</type>
     </constraint>
 </table>

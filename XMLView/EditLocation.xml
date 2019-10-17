@@ -25,13 +25,13 @@
                 </widget>
             </column>
             <column name="storage-type" title="type" numcolumns="3" order="120">
-                <widget type="select" fieldname="storage_type" translate="true" required="true">
+                <widget type="select" fieldname="storagetype" translate="true" required="true">
                     <values title="storage">0</values>
                     <values title="picking">1</values>
                 </widget>
             </column>
             <column name="validation-code" numcolumns="2" order="130">
-                <widget type="text" fieldname="validation_code" />
+                <widget type="text" fieldname="validationcode" />
             </column>
         </group>
         <group name="location" numcolumns="12">

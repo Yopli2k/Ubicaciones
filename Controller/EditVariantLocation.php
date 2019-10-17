@@ -79,7 +79,6 @@ class EditVariantLocation extends EditController
         if ($viewName == $mainViewName) {
             $view->disableColumn('code', true);  // Force disable PK column
             $view->disableColumn('product-code', true);  // Force disable Link column with product
-            $view->disableColumn('variant-code', true);  // Force disable Link column with variant product
 
             // Load product, variant and location data
             $this->loadProductData($viewName);
@@ -132,44 +131,6 @@ class EditVariantLocation extends EditController
     }
 
     /**
-     * Runs data insert action.
-     *
-     * @return bool
-     */
-    protected function insertAction()
-    {
-        $product = $this->request->get('idproduct');
-        $reference = $this->request->get('variant_reference');
-        $this->getModel()->setIdVariantFromReference($product, $reference);
-
-        return parent::insertAction();
-    }
-
-    /**
-     * Get complete description for variant attributes
-     *
-     * @param int $idAttribute1
-     * @param int $idAttribute2
-     * @return string
-     */
-    private function getAttributesDescription($idAttribute1, $idAttribute2)
-    {
-        $attributeValue = new AtributoValor();
-        $result = '';
-
-        if (!empty($idAttribute1) && $attributeValue->loadFromCode($idAttribute1)) {
-            $result .= ': ' . $attributeValue->descripcion;
-        }
-
-        if (!empty($idAttribute2) && $attributeValue->loadFromCode($idAttribute2)) {
-            $result .= empty($result) ? ": " : ', ';
-            $result .= $attributeValue->descripcion;
-        }
-
-        return $result;
-    }
-
-    /**
      * Return array of where filters from user form data
      *
      * @param array $data
@@ -212,12 +173,12 @@ class EditVariantLocation extends EditController
     }
 
     /**
-     * Get array of values for widget select of all variants of one product
+     * Get a array list for Widget Select of all References of one product
      *
      * @param int $idproduct
      * @return array
      */
-    private function getVariantAll($idproduct)
+    private function getReferencesForProduct($idproduct)
     {
         $where = [ new DataBaseWhere('idproducto', $idproduct) ];
         $order = [ 'referencia' => 'ASC' ];
@@ -225,29 +186,14 @@ class EditVariantLocation extends EditController
 
         $variant = new Variante();
         foreach ($variant->all($where, $order, 0, 0) as $row) {
-            $title = $row->referencia . $this->getAttributesDescription($row->idatributovalor1, $row->idatributovalor2);
+            $description = $row->description(true);
+            $title = empty($description)
+                ? $row->referencia
+                : $row->referencia . ' : ' . $description;
+
             $result[] = ['value' => $row->referencia, 'title' => $title];
         }
-
         return $result;
-    }
-
-    /**
-     * Get array of one value for widget select of a variant product
-     *
-     * @param int $idvariant
-     * @return array
-     */
-    private function getVariantSelected($idvariant)
-    {
-        $variant = new Variante();
-        $variant->loadFromCode($idvariant);
-        $title = $variant->referencia . $this->getAttributesDescription($variant->idatributovalor1, $variant->idatributovalor2);
-
-        $mainModel = $this->getModel();
-        $mainModel->variant_reference = $variant->referencia;
-
-        return [['value' => $variant->referencia, 'title' => $title]];
     }
 
     /**
@@ -284,8 +230,8 @@ class EditVariantLocation extends EditController
         if ($product->loadFromCode($idproduct)) {
             // Inject the product values into the main model. Is necessary for the xml view.
             $mainModel = $this->getModel();
-            $mainModel->product_reference = $product->referencia;
-            $mainModel->product_description = $product->descripcion;
+            $mainModel->productreference = $product->referencia;
+            $mainModel->productdescription = $product->descripcion;
         }
     }
 
@@ -301,15 +247,10 @@ class EditVariantLocation extends EditController
             return;
         }
 
-        $idvariant = $this->getViewModelValue($viewName, 'idvariant');
-
-        $values = empty($idvariant)
-            ? $this->getVariantAll($idproduct)
-            : $this->getVariantSelected($idvariant);
-
         // Add variant data to widget select array
         $columnReference = $this->views[$viewName]->columnForName('reference');
         if ($columnReference) {
+            $values = $this->getReferencesForProduct($idproduct);
             $columnReference->widget->setValuesFromArray($values, false);
         }
     }

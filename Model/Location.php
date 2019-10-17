@@ -84,14 +84,14 @@ class Location extends ModelClass
      *
      * @var int
      */
-    public $storage_type;
+    public $storagetype;
 
     /**
      * Shelf validation code. This is normally used in the preparation of sales orders.
      *
      * @var string
      */
-    public $validation_code;
+    public $validationcode;
 
     /**
      * Return array with values for a ListView select filter
@@ -147,7 +147,7 @@ class Location extends ModelClass
     public function clear()
     {
         parent::clear();
-        $this->storage_type = self::TYPE_STORAGE_STORAGE;
+        $this->storagetype = self::TYPE_STORAGE_STORAGE;
     }
 
     /**
