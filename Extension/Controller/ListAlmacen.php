@@ -56,7 +56,7 @@ class ListAlmacen
             $aisleValues = $this->codeModel->all('locations', 'aisle', 'aisle');
             $this->addFilterSelect($viewName, 'aisle', 'aisle', 'aisle', $aisleValues);
 
-            $this->addFilterSelect($viewName, 'storage-type', 'type', 'storage_type', Location::getFilterSelectValues());
+            $this->addFilterSelect($viewName, 'storage-type', 'type', 'storagetype', Location::getFilterSelectValues());
         };
     }
 }
