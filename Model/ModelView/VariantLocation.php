@@ -49,8 +49,7 @@ class VariantLocation extends ModelView
             'variantslocations',
             'locations',
             'almacenes',
-            'variantes',
-            'stocks'
+            'variantes'
         ];
     }
 
@@ -74,8 +73,7 @@ class VariantLocation extends ModelView
             'idattribute1' => 'variantes.idatributovalor1',
             'idattribute2' => 'variantes.idatributovalor2',
             'nameattribute1' => 'attribute1.descripcion',
-            'nameattribute2' => 'attribute2.descripcion',
-            'stock' => 'stocks.cantidad'
+            'nameattribute2' => 'attribute2.descripcion'
         ];
     }
 
@@ -84,7 +82,6 @@ class VariantLocation extends ModelView
             . ' INNER JOIN productos ON productos.idproducto = variantslocations.idproduct'
             . ' INNER JOIN variantes ON variantes.referencia = variantslocations.reference'
             . ' INNER JOIN locations ON locations.id = variantslocations.idlocation'
-            . ' LEFT JOIN stocks ON stocks.idproducto = variantslocations.idproduct AND stocks.referencia = variantslocations.reference AND stocks.codalmacen = locations.codewarehouse'
             . ' LEFT JOIN almacenes ON almacenes.codalmacen = locations.codewarehouse'
             . ' LEFT JOIN atributos_valores attribute1 ON attribute1.id = variantes.idatributovalor1'
             . ' LEFT JOIN atributos_valores attribute2 ON attribute2.id = variantes.idatributovalor2';

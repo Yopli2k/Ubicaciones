@@ -52,8 +52,5 @@
         <column name="drawer" order="190">
             <widget type="text" fieldname="drawer" />
         </column>
-        <column name="quantity" display="right" order="200">
-            <widget type="number" fieldname="cantidad" />
-        </column>
     </columns>
 </view>

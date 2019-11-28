@@ -39,15 +39,13 @@
                 </widget>
             </column>
         </group>
-        <group name="warehouse" title="warehouse" numcolumns="6" icon="fas fa-warehouse">
-            <column name="warehouse" numcolumns="8" order="210">
+        <group name="location" title="location" numcolumns="12" icon="fas fa-search-location">
+            <column name="warehouse" numcolumns="3" order="210">
                 <widget type="select" fieldname="codewarehouse" onclick="EditAlmacen" readonly="dinamic">
                     <values source="almacenes" fieldcode="codalmacen" fieldtitle="nombre"></values>
                 </widget>
             </column>
-        </group>
-        <group name="location" title="location" numcolumns="6" icon="fas fa-search-location">
-            <column name="location">
+            <column name="location" order="220">
                 <widget type="autocomplete" fieldname="idlocation" required="true">
                     <values source="locations" fieldcode="id" fieldtitle=""></values>
                 </widget>
