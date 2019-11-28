@@ -1,7 +1,8 @@
 <?php
 /**
  * This file is part of Ubicaciones plugin for FacturaScripts.
- * Copyright (C) 2019 Jose Antonio Cuello Principal <jcuello@artextrading.com>
+ * FacturaScripts Copyright (C) 2019 Carlos Garcia Gomez <carlos@facturascripts.com>
+ * Ubicaciones    Copyright (C) 2019 Jose Antonio Cuello Principal <jcuello@artextrading.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as
@@ -32,10 +33,6 @@ class Location extends ModelClass
 {
 
     use ModelTrait;
-
-    // Type of storage
-    const TYPE_STORAGE_STORAGE = 0;
-    const TYPE_STORAGE_PICKING = 1;
 
     /**
      * Corridor inside the warehose.
@@ -80,31 +77,11 @@ class Location extends ModelClass
     public $shelf;
 
     /**
-     * Type of storage.
-     *
-     * @var int
-     */
-    public $storagetype;
-
-    /**
      * Shelf validation code. This is normally used in the preparation of sales orders.
      *
      * @var string
      */
     public $validationcode;
-
-    /**
-     * Return array with values for a ListView select filter
-     *
-     * @return array
-     */
-    public static function getFilterSelectValues()
-    {
-        return [
-            ['code' => self::TYPE_STORAGE_STORAGE, 'description' => self::toolBox()->i18n()->trans('storage')],
-            ['code' => self::TYPE_STORAGE_PICKING, 'description' => self::toolBox()->i18n()->trans('picking')]
-        ];
-    }
 
     /**
      * This function is called when creating the model table. Returns the SQL
@@ -139,15 +116,6 @@ class Location extends ModelClass
     public static function tableName()
     {
         return 'locations';
-    }
-
-    /**
-     * Reset the values of model properties.
-     */
-    public function clear()
-    {
-        parent::clear();
-        $this->storagetype = self::TYPE_STORAGE_STORAGE;
     }
 
     /**

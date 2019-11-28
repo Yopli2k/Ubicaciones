@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * This file is part of Ubicaciones plugin for FacturaScripts.
- * Copyright (C) 2019 Jose Antonio Cuello Principal <jcuello@artextrading.com>
+ * FacturaScripts Copyright (C) 2019 Carlos Garcia Gomez <carlos@facturascripts.com>
+ * Ubicaciones    Copyright (C) 2019 Jose Antonio Cuello Principal <jcuello@artextrading.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as
@@ -18,33 +19,27 @@
 -->
 <view>
     <columns>
-        <group name="data" numcolumns="12">
-            <column name="warehouse" numcolumns="4" order="110">
+        <group name="data" numcolumns="6">
+            <column name="warehouse" order="110">
                 <widget type="select" fieldname="codewarehouse">
                     <values source="almacenes" fieldcode="codalmacen" fieldtitle="nombre"></values>
                 </widget>
             </column>
-            <column name="storage-type" title="type" numcolumns="3" order="120">
-                <widget type="select" fieldname="storagetype" translate="true" required="true">
-                    <values title="storage">0</values>
-                    <values title="picking">1</values>
-                </widget>
-            </column>
-            <column name="validation-code" numcolumns="2" order="130">
+            <column name="validation-code" numcolumns="3" order="130">
                 <widget type="text" fieldname="validationcode" />
             </column>
         </group>
-        <group name="location" numcolumns="12">
-            <column name="aisle" numcolumns="3" order="120">
+        <group name="location" numcolumns="6">
+            <column name="aisle" order="120">
                 <widget type="text" fieldname="aisle" />
             </column>
-            <column name="rack" numcolumns="3" order="130">
+            <column name="rack" order="130">
                 <widget type="text" fieldname="rack" />
             </column>
-            <column name="shelf" numcolumns="2" order="140">
+            <column name="shelf" order="140">
                 <widget type="text" fieldname="shelf" />
             </column>
-            <column name="drawer" numcolumns="2" order="140">
+            <column name="drawer" order="140">
                 <widget type="text" fieldname="drawer" />
             </column>
         </group>
