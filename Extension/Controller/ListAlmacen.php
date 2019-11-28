@@ -1,7 +1,8 @@
 <?php
 /**
  * This file is part of Ubicaciones plugin for FacturaScripts.
- * Copyright (C) 2019 Jose Antonio Cuello Principal <jcuello@artextrading.com>
+ * FacturaScripts Copyright (C) 2019 Carlos Garcia Gomez <carlos@facturascripts.com>
+ * Ubicaciones    Copyright (C) 2019 Jose Antonio Cuello Principal <jcuello@artextrading.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as
@@ -17,8 +18,6 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 namespace FacturaScripts\Plugins\Ubicaciones\Extension\Controller;
-
-use FacturaScripts\Plugins\Ubicaciones\Model\Location;
 
 /**
  *  Controller to list the items in the Location model
@@ -55,8 +54,6 @@ class ListAlmacen
 
             $aisleValues = $this->codeModel->all('locations', 'aisle', 'aisle');
             $this->addFilterSelect($viewName, 'aisle', 'aisle', 'aisle', $aisleValues);
-
-            $this->addFilterSelect($viewName, 'storage-type', 'type', 'storagetype', Location::getFilterSelectValues());
         };
     }
 }

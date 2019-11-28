@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * This file is part of Ubicaciones plugin for FacturaScripts.
- * Copyright (C) 2019 Jose Antonio Cuello Principal <jcuello@artextrading.com>
+ * FacturaScripts Copyright (C) 2019 Carlos Garcia Gomez <carlos@facturascripts.com>
+ * Ubicaciones    Copyright (C) 2019 Jose Antonio Cuello Principal <jcuello@artextrading.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as
@@ -30,7 +31,7 @@
         <column name="reference" order="130">
             <widget type="text" fieldname="reference" />
         </column>
-        <column name="barcode" order="140">
+        <column name="barcode" display="none" order="140">
             <widget type="text" fieldname="barcode" />
         </column>
         <column name="attribute-value-1" order="140">
@@ -50,12 +51,6 @@
         </column>
         <column name="drawer" order="190">
             <widget type="text" fieldname="drawer" />
-        </column>
-        <column name="storage-type" title="type" order="200">
-            <widget type="select" fieldname="storagetype" translate="true">
-                <values title="storage">0</values>
-                <values title="picking">1</values>
-            </widget>
         </column>
     </columns>
 </view>

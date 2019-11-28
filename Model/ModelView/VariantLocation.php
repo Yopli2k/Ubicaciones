@@ -1,7 +1,8 @@
 <?php
 /**
  * This file is part of Ubicaciones plugin for FacturaScripts.
- * Copyright (C) 2019 Jose Antonio Cuello Principal <jcuello@artextrading.com>
+ * FacturaScripts Copyright (C) 2019 Carlos Garcia Gomez <carlos@facturascripts.com>
+ * Ubicaciones    Copyright (C) 2019 Jose Antonio Cuello Principal <jcuello@artextrading.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as
@@ -64,7 +65,6 @@ class VariantLocation extends ModelView
             'codewarehouse' => 'locations.codewarehouse',
             'rack' => 'locations.rack',
             'shelf' => 'locations.shelf',
-            'storagetype' => 'locations.storagetype',
             'validationcode' => 'locations.validationcode',
             'namewarehouse' => 'almacenes.nombre',
             'nameproduct' => 'productos.descripcion',
