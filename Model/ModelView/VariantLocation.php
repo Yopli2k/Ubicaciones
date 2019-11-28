@@ -1,7 +1,8 @@
 <?php
 /**
  * This file is part of Ubicaciones plugin for FacturaScripts.
- * Copyright (C) 2019 Jose Antonio Cuello Principal <jcuello@artextrading.com>
+ * FacturaScripts Copyright (C) 2019 Carlos Garcia Gomez <carlos@facturascripts.com>
+ * Ubicaciones    Copyright (C) 2019 Jose Antonio Cuello Principal <jcuello@artextrading.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as
@@ -48,7 +49,8 @@ class VariantLocation extends ModelView
             'variantslocations',
             'locations',
             'almacenes',
-            'variantes'
+            'variantes',
+            'stocks'
         ];
     }
 
@@ -64,7 +66,6 @@ class VariantLocation extends ModelView
             'codewarehouse' => 'locations.codewarehouse',
             'rack' => 'locations.rack',
             'shelf' => 'locations.shelf',
-            'storagetype' => 'locations.storagetype',
             'validationcode' => 'locations.validationcode',
             'namewarehouse' => 'almacenes.nombre',
             'nameproduct' => 'productos.descripcion',
@@ -73,7 +74,8 @@ class VariantLocation extends ModelView
             'idattribute1' => 'variantes.idatributovalor1',
             'idattribute2' => 'variantes.idatributovalor2',
             'nameattribute1' => 'attribute1.descripcion',
-            'nameattribute2' => 'attribute2.descripcion'
+            'nameattribute2' => 'attribute2.descripcion',
+            'stock' => 'stocks.cantidad'
         ];
     }
 
@@ -82,6 +84,7 @@ class VariantLocation extends ModelView
             . ' INNER JOIN productos ON productos.idproducto = variantslocations.idproduct'
             . ' INNER JOIN variantes ON variantes.referencia = variantslocations.reference'
             . ' INNER JOIN locations ON locations.id = variantslocations.idlocation'
+            . ' LEFT JOIN stocks ON stocks.idproducto = variantslocations.idproduct AND stocks.referencia = variantslocations.reference AND stocks.codalmacen = locations.codewarehouse'
             . ' LEFT JOIN almacenes ON almacenes.codalmacen = locations.codewarehouse'
             . ' LEFT JOIN atributos_valores attribute1 ON attribute1.id = variantes.idatributovalor1'
             . ' LEFT JOIN atributos_valores attribute2 ON attribute2.id = variantes.idatributovalor2';
