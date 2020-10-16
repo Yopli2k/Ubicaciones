@@ -18,8 +18,6 @@
  */
 namespace FacturaScripts\Plugins\Ubicaciones\Extension\Controller;
 
-use FacturaScripts\Plugins\Ubicaciones\Model\Location;
-
 /**
  *  Controller to list the items in the Location model
  *
@@ -55,8 +53,6 @@ class ListAlmacen
 
             $aisleValues = $this->codeModel->all('locations', 'aisle', 'aisle');
             $this->addFilterSelect($viewName, 'aisle', 'aisle', 'aisle', $aisleValues);
-
-            $this->addFilterSelect($viewName, 'storage-type', 'type', 'storagetype', Location::getFilterSelectValues());
         };
     }
 }

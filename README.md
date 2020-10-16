@@ -5,10 +5,10 @@ Open source ERP software. Built on PHP, symfony componentes and bootstrap 4. Eas
 # Ubicaciones
 Product location system in warehouses for Facturascripts 2018.
 
-This software facilitates the knowledge and control of the locations of our products within a warehouse, being able to locate them up to five levels of classification.<br />
-It allows to establish the type of storage or use of each location: <i>Storage</i> or <i>Picking</i>.
+This software facilitates the knowledge and control of the locations of our products within a warehouse, being able to locate them up to five levels of classification.
 
 Classification levels:
+
 <ul>
     <li>aisle: Corridor inside the warehose</li>
     <li>rack:  Cupboard or area within the aisle</li>
