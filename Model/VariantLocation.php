@@ -1,8 +1,7 @@
 <?php
 /**
  * This file is part of Ubicaciones plugin for FacturaScripts.
- * FacturaScripts Copyright (C) 2019 Carlos Garcia Gomez <carlos@facturascripts.com>
- * Ubicaciones    Copyright (C) 2019 Jose Antonio Cuello Principal <jcuello@artextrading.com>
+ * Copyright (C) 2019 Jose Antonio Cuello Principal <yopli2000@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as
@@ -23,12 +22,12 @@ namespace FacturaScripts\Plugins\Ubicaciones\Model;
 use FacturaScripts\Core\Model\Base\ModelClass;
 use FacturaScripts\Core\Model\Base\ModelTrait;
 use FacturaScripts\Dinamic\Model\Variante;
-use FacturaScripts\Plugins\Ubicaciones\Model\Location;
+use FacturaScripts\Dinamic\Model\Location;
 
 /**
  * Location of product variants in the warehouse
  *
- * @author Jose Antonio Cuello Principal <jcuello@artextrading.com>
+ * @author Jose Antonio Cuello Principal <yopli2000@gmail.com>
  */
 class VariantLocation extends ModelClass
 {

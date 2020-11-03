@@ -19,11 +19,11 @@
 namespace FacturaScripts\Plugins\Ubicaciones\Extension\Controller;
 
 /**
- *  Controller to list the items in the list warehouse controller
+ *  Controller to list the items in the List Product controller
  *
  * @author Jose Antonio Cuello Principal <yopli2000@gmail.com>
  */
-class ListAlmacen
+class ListProducto
 {
     /**
      * Load views
@@ -31,28 +31,36 @@ class ListAlmacen
     public function createViews()
     {
         return function() {
-            $this->createViewLocations();
+            $this->createViewVariantLocations();
         };
     }
 
     /**
-     * Add and configure Location list view
+     * Add and configure Variant Location list view
      *
      * @param string $viewName
      */
-    public function createViewLocations()
+    public function createViewVariantLocations()
     {
-        return function($viewName = 'ListLocation') {
-            $this->addView($viewName, 'Location', 'locations', 'fas fa-map-marker-alt');
+        return function($viewName = 'ListVariantLocation') {
+            $this->addView($viewName, 'ModelView\VariantLocation', 'locations', 'fas fa-search-location');
             $this->addSearchFields($viewName, ['aisle', 'rack', 'shelf', 'drawer']);
             $this->addOrderBy($viewName, ['codewarehouse', 'aisle', 'rack', 'shelf', 'drawer'], 'warehouse');
-            $this->addOrderBy($viewName, ['aisle', 'rack', 'shelf', 'drawer', 'codewarehouse'], 'aisle');
+            $this->addOrderBy($viewName, ['aisle', 'rack', 'shelf', 'drawer', 'codewarehouse'], 'location');
 
             $warehouseValues = $this->codeModel->all('almacenes', 'codalmacen', 'nombre');
             $this->addFilterSelect($viewName, 'warehouse', 'warehouse', 'codewarehouse', $warehouseValues);
 
             $aisleValues = $this->codeModel->all('locations', 'aisle', 'aisle');
             $this->addFilterSelect($viewName, 'aisle', 'aisle', 'aisle', $aisleValues);
+
+            $this->addFilterAutocomplete($viewName, 'product', 'product', 'productos.referencia', 'productos', 'referencia', 'descripcion');
+            $this->addFilterAutocomplete($viewName, 'reference', 'reference', 'reference', 'Variante', 'referencia', 'referencia');
+
+            /// disable buttons
+            $this->setSettings($viewName, 'btnNew', false);
+            $this->setSettings($viewName, 'btnDelete', false);
+            $this->setSettings($viewName, 'checkBoxes', false);
         };
     }
 }

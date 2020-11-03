@@ -1,26 +1,30 @@
 # FacturaScripts
-Billing and accounting open source software for Small and Medium Enterprises.
-Open source ERP software. Built on PHP, symfony componentes and bootstrap 4. Easy and powerful.
+Software de código abierto de facturación y contabilidad para pequeñas y medianas empresas.
+Software ERP de código abierto. Construido sobre PHP, utilizando de componentes Symfony y Bootstrap 4.
+Fácil y potente.
+
 
 # Ubicaciones
-Product location system in warehouses for Facturascripts 2018.
+Sistema de localización de productos en almacenes para Facturascripts.
 
-This software facilitates the knowledge and control of the locations of our products within a warehouse, being able to locate them up to five levels of classification.
+Este software facilita el conocimiento y control de las ubicaciones de nuestros productos
+dentro de un almacén, pudiendo ubicarlos hasta en cinco niveles de clasificación.
 
-Classification levels:
-
+### Niveles de clasificación
 <ul>
-    <li>aisle: Corridor inside the warehose</li>
-    <li>rack:  Cupboard or area within the aisle</li>
-    <li>shelf: Closet band into rack</li>
-    <li>drawer: Compartment inside the closet band</li>
+    <li>Pasillo: cada una de las zonas de paso del almacén.</li>
+    <li>Armario: cada una de las zonas donde se puede colocar los productos dentro de un pasillo.</li>
+    <li>Estante: cada una de las bandas de un armario. También puede indicar el nivel o altura dentro del armario.</li>
+    <li>Cajón: cada uno de los compartimentos en los que dividimos una banda del armario.</li>
 </ul>
 
+
+## Más información
 <ul>
     <li>General info: https://www.facturascripts.com</li>
     <li>Plugin info:  https://www.facturascripts.com/plugins/Ubicaciones</li>
 </ul>
 
 
-## Documentation / Issues / Feedback
+## Documentación / Issues / Feedback
 https://www.facturascripts.com

@@ -1,8 +1,7 @@
 <?php
 /**
  * This file is part of Ubicaciones plugin for FacturaScripts.
- * FacturaScripts Copyright (C) 2019 Carlos Garcia Gomez <carlos@facturascripts.com>
- * Ubicaciones    Copyright (C) 2019 Jose Antonio Cuello Principal <jcuello@artextrading.com>
+ * Copyright (C) 2019 Jose Antonio Cuello Principal <yopli2000@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as
@@ -24,18 +23,18 @@ use FacturaScripts\Core\Base\InitClass;
 /**
  * Plugin Inicialization
  *
- * @author Jose Antonio Cuello Principal <jcuello@artextrading.com>
+ * @author Jose Antonio Cuello Principal <yopli2000@gmail.com>
  */
 class Init extends InitClass
 {
     public function init()
     {
-        $this->loadExtension(new Extension\Controller\EditProducto());
         $this->loadExtension(new Extension\Controller\ListAlmacen());
+        $this->loadExtension(new Extension\Controller\ListProducto());
+        $this->loadExtension(new Extension\Controller\EditProducto());
     }
 
     public function update()
     {
-        ;
     }
 }

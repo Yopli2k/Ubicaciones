@@ -1,8 +1,7 @@
 <?php
 /**
  * This file is part of Ubicaciones plugin for FacturaScripts.
- * FacturaScripts Copyright (C) 2019 Carlos Garcia Gomez <carlos@facturascripts.com>
- * Ubicaciones    Copyright (C) 2019 Jose Antonio Cuello Principal <jcuello@artextrading.com>
+ * Copyright (C) 2019 Jose Antonio Cuello Principal <yopli2000@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as
@@ -22,9 +21,9 @@ namespace FacturaScripts\Plugins\Ubicaciones\Extension\Controller;
 use FacturaScripts\Core\Base\DataBase\DataBaseWhere;
 
 /**
- * Controller to edit a single item from the Producto model
+ * Controller to edit a single item from the Producto controller
  *
- * @author Jose Antonio Cuello Principal <jcuello@artextrading.com>
+ * @author Jose Antonio Cuello Principal <yopli2000@gmail.com>
  */
 class EditProducto
 {
@@ -34,7 +33,25 @@ class EditProducto
     public function createViews()
     {
         return function() {
-            $this->addListView('ListVariantLocation', 'ModelView\VariantLocation', 'locations', 'fas fa-search-location');
+            $this->createViewVariantLocations();
+        };
+    }
+
+    /**
+     * Add and configure Variant Location list view
+     *
+     * @param string $viewName
+     */
+    public function createViewVariantLocations()
+    {
+        return function($viewName = 'ListVariantLocation') {
+            $this->addListView($viewName, 'ModelView\VariantLocation', 'locations', 'fas fa-search-location');
+            $this->views[$viewName]->addOrderBy(['codewarehouse', 'aisle', 'rack', 'shelf', 'drawer'], 'warehouse');
+            $this->views[$viewName]->addOrderBy(['aisle', 'rack', 'shelf', 'drawer', 'codewarehouse'], 'location');
+            $this->views[$viewName]->searchFields = ['aisle', 'rack', 'shelf', 'drawer'];
+
+            /// disable column
+            $this->views[$viewName]->disableColumn('product');
         };
     }
 
