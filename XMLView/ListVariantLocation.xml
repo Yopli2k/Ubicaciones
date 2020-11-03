@@ -24,8 +24,8 @@
         <column name="warehouse" order="110">
             <widget type="text" fieldname="codewarehouse" />
         </column>
-        <column name="product" display="none" order="120">
-            <widget type="text" fieldname="nameproduct" />
+        <column name="product" order="120">
+            <widget type="text" fieldname="referenceproduct" />
         </column>
         <column name="reference" order="130">
             <widget type="text" fieldname="reference" />

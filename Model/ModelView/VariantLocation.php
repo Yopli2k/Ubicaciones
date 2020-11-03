@@ -20,7 +20,7 @@
 namespace FacturaScripts\Plugins\Ubicaciones\Model\ModelView;
 
 use FacturaScripts\Core\Model\Base\ModelView;
-use FacturaScripts\Plugins\Ubicaciones\Model\VariantLocation as VariantLocationModel;
+use FacturaScripts\Dinamic\Model\VariantLocation as VariantLocationModel;
 
 /**
  * Location of Variant products. Model View.
@@ -68,7 +68,7 @@ class VariantLocation extends ModelView
             'validationcode' => 'locations.validationcode',
             'namewarehouse' => 'almacenes.nombre',
             'nameproduct' => 'productos.descripcion',
-            'reference' => 'variantes.referencia',
+            'referenceproduct' => 'productos.referencia',
             'barcode' => 'variantes.codbarras',
             'idattribute1' => 'variantes.idatributovalor1',
             'idattribute2' => 'variantes.idatributovalor2',

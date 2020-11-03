@@ -19,11 +19,10 @@
 
 namespace FacturaScripts\Plugins\Ubicaciones\Model;
 
-use FacturaScripts\Core\Base\DataBase\DataBaseWhere;
 use FacturaScripts\Core\Model\Base\ModelClass;
 use FacturaScripts\Core\Model\Base\ModelTrait;
 use FacturaScripts\Dinamic\Model\Variante;
-use FacturaScripts\Plugins\Ubicaciones\Model\Location;
+use FacturaScripts\Dinamic\Model\Location;
 
 /**
  * Location of product variants in the warehouse

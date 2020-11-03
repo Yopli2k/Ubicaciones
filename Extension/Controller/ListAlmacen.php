@@ -19,7 +19,7 @@
 namespace FacturaScripts\Plugins\Ubicaciones\Extension\Controller;
 
 /**
- *  Controller to list the items in the Location model
+ *  Controller to list the items in the list warehouse controller
  *
  * @author Jose Antonio Cuello Principal <yopli2000@gmail.com>
  */
@@ -36,7 +36,7 @@ class ListAlmacen
     }
 
     /**
-     * Add and connfigure Location list view
+     * Add and configure Location list view
      *
      * @param string $viewName
      */
