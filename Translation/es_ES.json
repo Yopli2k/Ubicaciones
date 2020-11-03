@@ -1,16 +1,13 @@
 {
     "aisle": "Pasillo",
     "drawer": "Cajón",
-    "location": "Ubicación",
-    "locations": "Ubicaciones",
+    "location-desc": "Localización física de la mercancía. Puede introducir los distintos valores (Pasillo\/Armario\/Estante\/Cajón) separados por espacio. Esto le ayudará a filtrar a la hora de seleccionar la ubicación. <b>IMPORTANTE:<\/b> Una vez seleccionada una ubicación deberá borrar todo el texto para seleccionar otra.",
+    "location-leyend": "Leyenda de Ubicación de mercancía",
+    "locations": "locations",
+    "one-field-required": "Debe informar al menos un valor para los campos",
     "rack": "Armario",
     "shelf": "Estante",
-    "storage": "Almacenar",
-    "picking": "Picking",
-    "one-field-required": "Debe informar al menos un valor para los campos",
-    "warehouse-required": "Debe informar un almacén",
-    "variant-location": "Ubicación de mercancía",
     "validation-code": "Cod. Validación",
-    "location-leyend": "Leyenda de Ubicación de mercancía",
-    "location-desc": "Localización física de la mercancía. Puede introducir los distintos valores (Pasillo/Armario/Estante/Cajón) separados por espacio. Esto le ayudará a filtrar a la hora de seleccionar la ubicación. <b>IMPORTANTE:</b> Una vez seleccionada una ubicación deberá borrar todo el texto para seleccionar otra."
+    "variant-location": "Ubicación de mercancía",
+    "warehouse-required": "Debe informar un almacén"
 }
