@@ -29,12 +29,12 @@ class Init extends InitClass
 {
     public function init()
     {
-        $this->loadExtension(new Extension\Controller\EditProducto());
         $this->loadExtension(new Extension\Controller\ListAlmacen());
+        $this->loadExtension(new Extension\Controller\ListProducto());
+        $this->loadExtension(new Extension\Controller\EditProducto());
     }
 
     public function update()
     {
-        ;
     }
 }
