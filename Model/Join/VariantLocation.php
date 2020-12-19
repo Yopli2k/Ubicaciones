@@ -17,9 +17,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace FacturaScripts\Plugins\Ubicaciones\Model\ModelView;
+namespace FacturaScripts\Plugins\Ubicaciones\Model\Join;
 
-use FacturaScripts\Core\Model\Base\ModelView;
+use FacturaScripts\Dinamic\Model\Base\JoinModel;
 use FacturaScripts\Dinamic\Model\VariantLocation as VariantLocationModel;
 
 /**
@@ -27,7 +27,7 @@ use FacturaScripts\Dinamic\Model\VariantLocation as VariantLocationModel;
  *
  * @author Jose Antonio Cuello Principal <yopli2000@gmail.com>
  */
-class VariantLocation extends ModelView
+class VariantLocation extends JoinModel
 {
 
     /**
