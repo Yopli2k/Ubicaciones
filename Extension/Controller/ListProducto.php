@@ -43,7 +43,7 @@ class ListProducto
     public function createViewVariantLocations()
     {
         return function($viewName = 'ListVariantLocation') {
-            $this->addView($viewName, 'ModelView\VariantLocation', 'locations', 'fas fa-search-location');
+            $this->addView($viewName, 'Join\VariantLocation', 'locations', 'fas fa-search-location');
             $this->addSearchFields($viewName, ['aisle', 'rack', 'shelf', 'drawer']);
             $this->addOrderBy($viewName, ['codewarehouse', 'aisle', 'rack', 'shelf', 'drawer'], 'warehouse');
             $this->addOrderBy($viewName, ['aisle', 'rack', 'shelf', 'drawer', 'codewarehouse'], 'location');
