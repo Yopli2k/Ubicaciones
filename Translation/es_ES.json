@@ -7,6 +7,7 @@
     "one-field-required": "Debe informar al menos un valor para los campos",
     "rack": "Armario",
     "shelf": "Estante",
+    "storage": "Ubicación",
     "validation-code": "Cod. Validación",
     "variant-location": "Ubicación de mercancía",
     "warehouse-required": "Debe informar un almacén"
