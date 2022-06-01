@@ -90,7 +90,7 @@ class Location extends ModelClass
      *
      * @return string
      */
-    public function install()
+    public function install(): string
     {
         new Almacen();
         parent::install();
@@ -103,7 +103,7 @@ class Location extends ModelClass
      *
      * @return string
      */
-    public static function primaryColumn()
+    public static function primaryColumn(): string
     {
         return 'id';
     }
@@ -113,7 +113,7 @@ class Location extends ModelClass
      *
      * @return string
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return 'locations';
     }
@@ -142,7 +142,7 @@ class Location extends ModelClass
      *
      * @return string
      */
-    public function descriptionComplete()
+    public function descriptionComplete(): string
     {
         $i18n = static::toolBox()->i18n();
         $description = '';
@@ -158,7 +158,7 @@ class Location extends ModelClass
      *
      * @return string
      */
-    public static function descriptionLocation($idlocation)
+    public static function descriptionLocation($idlocation): string
     {
         $location = new self();
         if ($location->loadFromCode($idlocation)) {
@@ -173,7 +173,7 @@ class Location extends ModelClass
      *
      * @return bool
      */
-    public function test()
+    public function test(): bool
     {
         if (!$this->hasValues()) {
             $this->toolBox()->i18nLog()->warning('one-field-required');
@@ -190,7 +190,7 @@ class Location extends ModelClass
      *
      * @return string
      */
-    public function url(string $type = 'auto', string $list = 'List')
+    public function url(string $type = 'auto', string $list = 'List'): string
     {
         return parent::url($type, 'ListAlmacen?activetab=List');
     }
@@ -198,9 +198,9 @@ class Location extends ModelClass
     /**
      * Check if there are location values informed.
      *
-     * @return boolean
+     * @return bool
      */
-    private function hasValues()
+    private function hasValues(): bool
     {
         return !(empty($this->aisle)
             && empty($this->rack)

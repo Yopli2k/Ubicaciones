@@ -69,7 +69,7 @@ class VariantLocation extends ModelClass
      *
      * @return string
      */
-    public function install()
+    public function install(): string
     {
         new Location();
         new Variante();
@@ -83,7 +83,7 @@ class VariantLocation extends ModelClass
      *
      * @return string
      */
-    public static function primaryColumn()
+    public static function primaryColumn(): string
     {
         return 'id';
     }
@@ -93,7 +93,7 @@ class VariantLocation extends ModelClass
      *
      * @return string
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return 'variantslocations';
     }
@@ -106,7 +106,7 @@ class VariantLocation extends ModelClass
      *
      * @return string
      */
-    public function url(string $type = 'auto', string $list = 'List')
+    public function url(string $type = 'auto', string $list = 'List'): string
     {
         $list = 'EditProducto?code=' . $this->idproduct . '&active=List';
         return parent::url($type, $list);
