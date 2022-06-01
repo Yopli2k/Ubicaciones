@@ -4,7 +4,7 @@ Software ERP de código abierto. Construido sobre PHP, utilizando de componentes
 Fácil y potente.
 
 
-# Ubicaciones
+## Ubicaciones
 Sistema de localización de productos en almacenes para Facturascripts.
 
 Este software facilita el conocimiento y control de las ubicaciones de nuestros productos
