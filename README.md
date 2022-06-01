@@ -19,12 +19,23 @@ dentro de un almacén, pudiendo ubicarlos hasta en cinco niveles de clasificaci�
 </ul>
 
 
+## Nombre de carpeta
+Como con todos los plugins, la carpeta se debe llamar igual que el plugin. En este caso **Ubicaciones**.
+
+
 ## Más información
 <ul>
     <li>General info: https://www.facturascripts.com</li>
-    <li>Plugin info:  https://www.facturascripts.com/plugins/Ubicaciones</li>
+    <li>Plugin info:  https://www.facturascripts.com/plugins/ubicaciones</li>
 </ul>
 
 
 ## Documentación / Issues / Feedback
 https://www.facturascripts.com
+
+
+## Enlaces de interés
+- [Cómo instalar plugins en FacturaScripts](https://facturascripts.com/publicaciones/como-instalar-un-plugin-en-facturascripts)
+- [Curso de FacturaScripts](https://youtube.com/playlist?list=PLNxcJ5CWZ8V6nfeVu6vieKI_d8a_ObLfY)
+- [Programa para hacer facturas gratis](https://facturascripts.com/programa-para-hacer-facturas)
+- [Cómo instalar FacturaScripts en Windows](https://facturascripts.com/instalar-windows)
