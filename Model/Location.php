@@ -1,7 +1,8 @@
 <?php
 /**
  * This file is part of Ubicaciones plugin for FacturaScripts.
- * Copyright (C) 2019 Jose Antonio Cuello Principal <yopli2000@gmail.com>
+ * FacturaScripts Copyright (C) 2015-2022 Carlos Garcia Gomez <carlos@facturascripts.com>
+ * Ubicaciones    Copyright (C) 2019-2022 Jose Antonio Cuello Principal <yopli2000@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as
@@ -83,13 +84,43 @@ class Location extends ModelClass
     public $validationcode;
 
     /**
+     * Get complete description for location
+     *
+     * @return string
+     */
+    public function descriptionComplete(): string
+    {
+        $i18n = static::toolBox()->i18n();
+        $description = '';
+        $this->addToDescription($description, $this->aisle, $i18n->trans('aisle'));
+        $this->addToDescription($description, $this->rack, $i18n->trans('rack'));
+        $this->addToDescription($description, $this->shelf, $i18n->trans('shelf'));
+        $this->addToDescription($description, $this->drawer, $i18n->trans('drawer'));
+        return $description;
+    }
+
+    /**
+     * Get complete description for specified location
+     *
+     * @return string
+     */
+    public static function descriptionLocation($idlocation): string
+    {
+        $location = new self();
+        if ($location->loadFromCode($idlocation)) {
+            return $location->descriptionComplete();
+        }
+        return $idlocation;
+    }
+
+    /**
      * This function is called when creating the model table. Returns the SQL
      * that will be executed after the creation of the table. Useful to insert values
      * default.
      *
      * @return string
      */
-    public function install()
+    public function install(): string
     {
         new Almacen();
         parent::install();
@@ -102,7 +133,7 @@ class Location extends ModelClass
      *
      * @return string
      */
-    public static function primaryColumn()
+    public static function primaryColumn(): string
     {
         return 'id';
     }
@@ -112,9 +143,37 @@ class Location extends ModelClass
      *
      * @return string
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return 'locations';
+    }
+
+    /**
+     * Returns true if there are no errors in the values of the model properties.
+     * It runs inside the save method.
+     *
+     * @return bool
+     */
+    public function test(): bool
+    {
+        if (!$this->hasValues()) {
+            $this->toolBox()->i18nLog()->warning('one-field-required');
+            return false;
+        }
+        return parent::test();
+    }
+
+    /**
+     * Returns the url where to see / modify the data.
+     *
+     * @param string $type
+     * @param string $list
+     *
+     * @return string
+     */
+    public function url(string $type = 'auto', string $list = 'List'): string
+    {
+        return parent::url($type, 'ListAlmacen?activetab=List');
     }
 
     /**
@@ -137,69 +196,11 @@ class Location extends ModelClass
     }
 
     /**
-     * Get complete description for location
-     *
-     * @return string
-     */
-    public function descriptionComplete()
-    {
-        $i18n = static::toolBox()->i18n();
-        $description = '';
-        $this->addToDescription($description, $this->aisle, $i18n->trans('aisle'));
-        $this->addToDescription($description, $this->rack, $i18n->trans('rack'));
-        $this->addToDescription($description, $this->shelf, $i18n->trans('shelf'));
-        $this->addToDescription($description, $this->drawer, $i18n->trans('drawer'));
-        return $description;
-    }
-
-    /**
-     * Get complete description for specified location
-     *
-     * @return string
-     */
-    public static function descriptionLocation($idlocation)
-    {
-        $location = new self();
-        if ($location->loadFromCode($idlocation)) {
-            return $location->descriptionComplete();
-        }
-        return $idlocation;
-    }
-
-    /**
-     * Returns true if there are no errors in the values of the model properties.
-     * It runs inside the save method.
+     * Check if there are location values informed.
      *
      * @return bool
      */
-    public function test()
-    {
-        if (!$this->hasValues()) {
-            $this->toolBox()->i18nLog()->warning('one-field-required');
-            return false;
-        }
-        return parent::test();
-    }
-
-    /**
-     * Returns the url where to see / modify the data.
-     *
-     * @param string $type
-     * @param string $list
-     *
-     * @return string
-     */
-    public function url(string $type = 'auto', string $list = 'List')
-    {
-        return parent::url($type, 'ListAlmacen?activetab=List');
-    }
-
-    /**
-     * Check if there are location values informed.
-     *
-     * @return boolean
-     */
-    private function hasValues()
+    private function hasValues(): bool
     {
         return !(empty($this->aisle)
             && empty($this->rack)
