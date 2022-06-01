@@ -32,7 +32,7 @@ class EditLocation extends EditController
     /**
      * Returns the model name
      */
-    public function getModelClassName()
+    public function getModelClassName(): string
     {
         return 'Location';
     }
@@ -42,7 +42,7 @@ class EditLocation extends EditController
      *
      * @return array
      */
-    public function getPageData()
+    public function getPageData(): array
     {
         $pagedata = parent::getPageData();
         $pagedata['title'] = 'location';

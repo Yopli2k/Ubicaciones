@@ -84,6 +84,36 @@ class Location extends ModelClass
     public $validationcode;
 
     /**
+     * Get complete description for location
+     *
+     * @return string
+     */
+    public function descriptionComplete(): string
+    {
+        $i18n = static::toolBox()->i18n();
+        $description = '';
+        $this->addToDescription($description, $this->aisle, $i18n->trans('aisle'));
+        $this->addToDescription($description, $this->rack, $i18n->trans('rack'));
+        $this->addToDescription($description, $this->shelf, $i18n->trans('shelf'));
+        $this->addToDescription($description, $this->drawer, $i18n->trans('drawer'));
+        return $description;
+    }
+
+    /**
+     * Get complete description for specified location
+     *
+     * @return string
+     */
+    public static function descriptionLocation($idlocation): string
+    {
+        $location = new self();
+        if ($location->loadFromCode($idlocation)) {
+            return $location->descriptionComplete();
+        }
+        return $idlocation;
+    }
+
+    /**
      * This function is called when creating the model table. Returns the SQL
      * that will be executed after the creation of the table. Useful to insert values
      * default.
@@ -119,55 +149,6 @@ class Location extends ModelClass
     }
 
     /**
-     *
-     * @param string $description
-     * @param string $value
-     * @param string $label
-     */
-    private function addToDescription(&$description, $value, $label)
-    {
-        if (($value == '') || ($value == null)) {
-            return;
-        }
-
-        if (!empty($description)) {
-            $description .= ' > ';
-        }
-
-        $description .= $label . ': ' . $value;
-    }
-
-    /**
-     * Get complete description for location
-     *
-     * @return string
-     */
-    public function descriptionComplete(): string
-    {
-        $i18n = static::toolBox()->i18n();
-        $description = '';
-        $this->addToDescription($description, $this->aisle, $i18n->trans('aisle'));
-        $this->addToDescription($description, $this->rack, $i18n->trans('rack'));
-        $this->addToDescription($description, $this->shelf, $i18n->trans('shelf'));
-        $this->addToDescription($description, $this->drawer, $i18n->trans('drawer'));
-        return $description;
-    }
-
-    /**
-     * Get complete description for specified location
-     *
-     * @return string
-     */
-    public static function descriptionLocation($idlocation): string
-    {
-        $location = new self();
-        if ($location->loadFromCode($idlocation)) {
-            return $location->descriptionComplete();
-        }
-        return $idlocation;
-    }
-
-    /**
      * Returns true if there are no errors in the values of the model properties.
      * It runs inside the save method.
      *
@@ -193,6 +174,25 @@ class Location extends ModelClass
     public function url(string $type = 'auto', string $list = 'List'): string
     {
         return parent::url($type, 'ListAlmacen?activetab=List');
+    }
+
+    /**
+     *
+     * @param string $description
+     * @param string $value
+     * @param string $label
+     */
+    private function addToDescription(&$description, $value, $label)
+    {
+        if (($value == '') || ($value == null)) {
+            return;
+        }
+
+        if (!empty($description)) {
+            $description .= ' > ';
+        }
+
+        $description .= $label . ': ' . $value;
     }
 
     /**

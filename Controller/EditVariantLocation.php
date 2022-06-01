@@ -23,7 +23,6 @@ use FacturaScripts\Core\Base\DataBase\DataBaseWhere;
 use FacturaScripts\Core\Lib\ExtendedController\EditController;
 use FacturaScripts\Dinamic\Model\Producto;
 use FacturaScripts\Dinamic\Model\Variante;
-use FacturaScripts\Dinamic\Model\AtributoValor;
 use FacturaScripts\Plugins\Ubicaciones\Model\Location;
 
 /**
@@ -45,7 +44,7 @@ class EditVariantLocation extends EditController
     /**
      * Returns the model name
      */
-    public function getModelClassName()
+    public function getModelClassName(): string
     {
         return 'VariantLocation';
     }
@@ -55,7 +54,7 @@ class EditVariantLocation extends EditController
      *
      * @return array
      */
-    public function getPageData()
+    public function getPageData(): array
     {
         $pagedata = parent::getPageData();
         $pagedata['title'] = 'variant-location';
@@ -111,7 +110,7 @@ class EditVariantLocation extends EditController
      *
      * @return array
      */
-    protected function autocompleteForLocations()
+    protected function autocompleteForLocations(): array
     {
         $data = $this->requestGet(['field', 'fieldcode', 'source', 'term', 'codewarehouse']);
         $where = $this->getAutocompleteWhere($data);
@@ -179,7 +178,7 @@ class EditVariantLocation extends EditController
      * @param int $idproduct
      * @return array
      */
-    private function getReferencesForProduct($idproduct)
+    private function getReferencesForProduct($idproduct): array
     {
         $where = [ new DataBaseWhere('idproducto', $idproduct) ];
         $order = [ 'referencia' => 'ASC' ];
