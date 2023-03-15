@@ -108,7 +108,7 @@ class VariantLocation extends ModelClass
      */
     public function url(string $type = 'auto', string $list = 'List'): string
     {
-        $list = 'EditProducto?code=' . $this->idproduct . '&active=List';
+        $list = 'EditProducto?code=' . $this->idproduct . '&activetab=List';
         return parent::url($type, $list);
     }
 }

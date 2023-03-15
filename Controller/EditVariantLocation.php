@@ -208,9 +208,16 @@ class EditVariantLocation extends EditController
             return;
         }
 
+        $location = new Location();
+        if (false === $location->loadFromCode($idlocation)) {
+            return;
+        }
+
+        $this->views[$viewName]->model->storagetype = $location->storagetype;
+
         $columnLocation = $this->views[$viewName]->columnForName('location');
         if ($columnLocation) {
-            $columnLocation->widget->setSelected(Location::descriptionLocation($idlocation));
+            $columnLocation->widget->setSelected($location->descriptionComplete());
         }
     }
 
