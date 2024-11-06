@@ -43,16 +43,17 @@ class VariantLocation extends JoinModel
         $this->setMasterModel(new VariantLocationModel());
     }
 
+    /**
+     * List of tables required for the execution of the view.
+     */
     protected function getTables(): array
     {
-        return [
-            'variantslocations',
-            'locations',
-            'almacenes',
-            'variantes'
-        ];
+        return [];
     }
 
+    /**
+     * List of fields or columns to select clausule
+     */
     protected function getFields(): array
     {
         return [
@@ -60,6 +61,7 @@ class VariantLocation extends JoinModel
             'idlocation' => 'variantslocations.idlocation',
             'idproduct' => 'variantslocations.idproduct',
             'reference' => 'variantslocations.reference',
+            'quantity' => 'variantslocations.quantity',
             'aisle' => 'locations.aisle',
             'drawer' => 'locations.drawer',
             'codewarehouse' => 'locations.codewarehouse',
@@ -78,7 +80,11 @@ class VariantLocation extends JoinModel
         ];
     }
 
-    protected function getSQLFrom(): string {
+    /**
+     * List of tables related to from clausule
+     */
+    protected function getSQLFrom(): string
+    {
         return 'variantslocations'
             . ' INNER JOIN productos ON productos.idproducto = variantslocations.idproduct'
             . ' INNER JOIN variantes ON variantes.referencia = variantslocations.reference'

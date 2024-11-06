@@ -20,8 +20,10 @@
 
 namespace FacturaScripts\Plugins\Ubicaciones\Model;
 
+use FacturaScripts\Core\Base\DataBase\DataBaseWhere;
 use FacturaScripts\Core\Model\Base\ModelClass;
 use FacturaScripts\Core\Model\Base\ModelTrait;
+use FacturaScripts\Dinamic\Model\Producto;
 use FacturaScripts\Dinamic\Model\Variante;
 use FacturaScripts\Dinamic\Model\Location;
 
@@ -63,6 +65,63 @@ class VariantLocation extends ModelClass
     public $reference;
 
     /**
+     * Quantity of the product variant in the location.
+     *
+     * @var float
+     */
+    public $quantity;
+
+    /**
+     * Minimum stock of the product variant in the location.
+     *
+     * @var float
+     */
+    public $stockmax;
+
+    /**
+     * Maximum stock of the product variant in the location.
+     *
+     * @var float
+     */
+    public $stockmin;
+
+    /**
+     * Reset the values of all model properties.
+     */
+    public function clear()
+    {
+        parent::clear();
+        $this->quantity = 0;
+        $this->stockmax = 0;
+        $this->stockmin = 0;
+    }
+
+    /**
+     * Returns the product into the location.
+     *
+     * @return Producto
+     */
+    public function getProduct(): Producto
+    {
+        $product = new Producto();
+        $product->loadFromCode($this->idproduct);
+        return $product;
+    }
+
+    /**
+     * Returns the variant product into the location.
+     *
+     * @return Variante
+     */
+    public function getVariant(): Variante
+    {
+        $variant = new Variante();
+        $where = [ new DataBaseWhere('referencia', $this->reference) ];
+        $variant->loadFromCode('', $where);
+        return $variant;
+    }
+
+    /**
      * This function is called when creating the model table. Returns the SQL
      * that will be executed after the creation of the table. Useful to insert values
      * default.
@@ -96,6 +155,20 @@ class VariantLocation extends ModelClass
     public static function tableName(): string
     {
         return 'variantslocations';
+    }
+
+    /**
+     * Returns true if there are no errors in the values of the model properties.
+     * It runs inside the save method.
+     *
+     * @return bool
+     */
+    public function test(): bool
+    {
+        if ($this->stockmin > $this->stockmax) {
+            $this->stockmin = $this->stockmax;
+        }
+        return parent::test();
     }
 
     /**

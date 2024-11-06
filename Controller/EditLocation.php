@@ -19,6 +19,8 @@
  */
 namespace FacturaScripts\Plugins\Ubicaciones\Controller;
 
+use FacturaScripts\Core\Base\DataBase\DataBaseWhere;
+use FacturaScripts\Core\Lib\ExtendedController\BaseView;
 use FacturaScripts\Core\Lib\ExtendedController\EditController;
 
 /**
@@ -28,6 +30,8 @@ use FacturaScripts\Core\Lib\ExtendedController\EditController;
  */
 class EditLocation extends EditController
 {
+
+    private const VIEW_VARIANT_LOCATION = 'EditVariantLocationQuantity';
 
     /**
      * Returns the model name
@@ -51,5 +55,52 @@ class EditLocation extends EditController
         $pagedata['showonmenu'] = false;
 
         return $pagedata;
+    }
+
+    /**
+     * Create the view to display.
+     */
+    protected function createViews()
+    {
+        parent::createViews();
+        $this->createViewsVariantLocations();
+        $this->setTabsPosition('bottom');
+    }
+
+    /**
+     * Loads the data to display.
+     *
+     * @param string $viewName
+     * @param BaseView $view
+     */
+    protected function loadData($viewName, $view)
+    {
+        switch ($viewName) {
+            case self::VIEW_VARIANT_LOCATION:
+                $mvn = $this->getMainViewName();
+                $id = $this->getViewModelValue($mvn, 'id');
+                $where = [ new DataBaseWhere('idlocation', $id) ];
+                $view->loadData('', $where);
+                break;
+            default:
+                parent::loadData($viewName, $view);
+                break;
+        }
+    }
+
+    /**
+     * Add list of products in the location.
+     *
+     * @return void
+     */
+    private function createViewsVariantLocations(): void
+    {
+        $view = $this->addEditListView(
+            self::VIEW_VARIANT_LOCATION,
+            'VariantLocationQuantity',
+            'products',
+            'fa-solid fa-cube'
+        );
+        $view->setInLine(true);
     }
 }

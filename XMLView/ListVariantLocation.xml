@@ -52,11 +52,14 @@
         <column name="drawer" order="190">
             <widget type="text" fieldname="drawer" />
         </column>
-        <column name="storage-type" title="type" order="200">
+        <column name="storage-type" title="type" display="center" order="200">
             <widget type="select" fieldname="storagetype" translate="true">
                 <values title="storage">0</values>
                 <values title="picking">1</values>
             </widget>
+        </column>
+        <column name="quantity" display="right" order="210">
+            <widget type="number" fieldname="quantity" />
         </column>
     </columns>
 </view>
