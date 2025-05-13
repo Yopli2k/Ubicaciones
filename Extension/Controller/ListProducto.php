@@ -19,6 +19,9 @@
  */
 namespace FacturaScripts\Plugins\Ubicaciones\Extension\Controller;
 
+use FacturaScripts\Core\Base\DataBase\DataBaseWhere;
+use FacturaScripts\Core\Tools;
+
 /**
  *  Controller to list the items in the List Product controller
  *
@@ -31,7 +34,7 @@ class ListProducto
      */
     public function createViews()
     {
-        return function() {
+        return function () {
             $this->createViewVariantLocations();
         };
     }
@@ -43,7 +46,7 @@ class ListProducto
      */
     public function createViewVariantLocations()
     {
-        return function($viewName = 'ListVariantLocation') {
+        return function ($viewName = 'ListVariantLocation') {
             $this->addView($viewName, 'Join\VariantLocation', 'locations', 'fas fa-search-location');
             $this->addSearchFields($viewName, ['aisle', 'rack', 'shelf', 'drawer']);
             $this->addOrderBy($viewName, ['codewarehouse', 'aisle', 'rack', 'shelf', 'drawer'], 'warehouse');
@@ -54,6 +57,13 @@ class ListProducto
 
             $aisleValues = $this->codeModel->all('locations', 'aisle', 'aisle');
             $this->addFilterSelect($viewName, 'aisle', 'aisle', 'aisle', $aisleValues);
+
+            $i18n = Tools::lang();
+            $this->addFilterSelectWhere($viewName, 'status', [
+                ['label' => $i18n->trans('type'), 'where' => []],
+                ['label' => $i18n->trans('storage'), 'where' => [new DataBaseWhere('locations.storagetype', 0)]],
+                ['label' => $i18n->trans('picking'), 'where' => [new DataBaseWhere('locations.storagetype', 1)]],
+            ]);
 
             $this->addFilterAutocomplete($viewName, 'product', 'product', 'productos.referencia', 'productos', 'referencia', 'descripcion');
             $this->addFilterAutocomplete($viewName, 'reference', 'reference', 'reference', 'Variante', 'referencia', 'referencia');
