@@ -59,4 +59,11 @@
             </widget>
         </column>
     </columns>
+
+    <rows>
+        <row type="status" fieldname="blocked">
+            <option color="warning" title="blocked">1</option>
+            <option color="white" title="not-blocked">0</option>
+        </row>
+    </rows>
 </view>
