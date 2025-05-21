@@ -70,7 +70,7 @@ class ListProducto
             $view->addFilterSelect('aisle', 'aisle', 'aisle', $aisleValues);
 
             $i18n = Tools::lang();
-            $view->addFilterSelectWhere('status', [
+            $view->addFilterSelectWhere('type', [
                 ['label' => $i18n->trans('type'), 'where' => []],
                 ['label' => $i18n->trans('storage'), 'where' => [new DataBaseWhere('locations.storagetype', 0)]],
                 ['label' => $i18n->trans('picking'), 'where' => [new DataBaseWhere('locations.storagetype', 1)]],
